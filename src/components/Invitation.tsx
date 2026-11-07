@@ -32,8 +32,10 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               fetchPriority="high"
             />
             <header className="web-header">
-              <span>27.11.26 / MAIDENHEAD</span>
-              <a href="#rsvp">GET YOUR NAME DOWN ↗</a>
+              <span>27 Nov 2026 / Maidenhead</span>
+              <a href="#explore">
+                Explore the night <span aria-hidden="true">↓</span>
+              </a>
             </header>
             <div className="p1-brand">
               <img src="/images/wordmark.webp" alt="Emerge" />
@@ -47,15 +49,21 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span>the beginning</span>
               </h1>
               <p className="p1-descriptor">Music, culture &amp; meaningful connection.</p>
+              <p className="p1-meta">
+                Friday 27 Nov <span aria-hidden="true">·</span> {EVENT.start}{" "}
+                <span aria-hidden="true">·</span> {EVENT.venue}, Maidenhead
+              </p>
             </div>
           </div>
           <a className="button p1-banner" id="hero-cta" href="#rsvp">
             <span>Put me on the list!</span>
-            <span aria-hidden="true">↗</span>
+            <span className="p1-price">
+              Tickets {EVENT.priceLabel} <span aria-hidden="true">↗</span>
+            </span>
           </a>
         </section>
 
-        <section className="invitation-intro wrap">
+        <section className="invitation-intro wrap" id="explore">
           <div className="invite-copy">
             <p className="eyebrow" id="sender-line">
               {inviter ? `${inviter} thought you’d like it here.` : "Thought this might be your kind of night"}

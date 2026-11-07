@@ -75,3 +75,25 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
    7 Nov 2026). */
 .thermal-experience .experience-programme>.eyebrow{font:700 clamp(20px,2.2vw,30px)/1.2 var(--font-unbounded),sans-serif;letter-spacing:-.04em;text-transform:uppercase;color:var(--pink);margin-bottom:30px}
 @media(max-width:760px){.thermal-experience .experience-programme>.eyebrow{font-size:clamp(18px,5vw,24px);margin-bottom:22px}}
+
+/* First panel, revised 7 Nov 2026 to Darren's mock: date line top left,
+   "Explore the night" top right, an event line under the descriptor, and the
+   price on the banner. The panel plus banner is exactly one screen. */
+.web-header>span,.web-header>a{text-transform:uppercase}
+.web-header>a{font-size:clamp(11px,1.15vw,16px);font-weight:750;letter-spacing:.06em;padding:10px 0}
+.p1-meta{margin:0;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:min(1.45vw,2.4svh)}
+.p1-meta>span{margin:0 .5em}
+.p1-price{font-family:var(--font-unbounded),sans-serif;font-weight:800;text-transform:none;letter-spacing:-.03em;white-space:nowrap}
+.p1-copy .p1-descriptor{margin-bottom:min(18px,1.8svh)}
+#explore{scroll-margin-top:0}
+@media(max-width:760px){
+  .p1-meta{font-size:clamp(11.5px,min(3.1vw,1.9svh),14px);line-height:1.5;letter-spacing:.05em}
+  .p1-meta>span{margin:0 .35em}
+  .p1-banner{gap:12px}
+}
+
+/* Footer lockup: the wordmark with the hero's italic line under it. */
+.footer{align-items:flex-end}
+.footer-lockup{width:min(220px,55vw)}
+.footer .footer-lockup img{display:block;width:100%;height:auto}
+.footer-lockup p{margin:-4px 4% 0 0;text-align:right;color:var(--ivory);font-size:14px;font-style:italic;font-weight:700;letter-spacing:-.02em;white-space:nowrap}
