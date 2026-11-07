@@ -161,9 +161,6 @@ Also before go-live:
   which receives the name, email and amount (her legal name needed). Receipts
   and card statements show her business. VAT and income are hers to account for.
 
-- Copy under **02 / CULTURE** is the demo's art copy until Darren rewrites it
-  (`src/components/Invitation.tsx`, and the confirmation email in
-  `src/lib/emails.ts`).
 - Suze's sign-off on refunds and transfers.
 - Send every email to real Gmail, Outlook and Apple Mail accounts on a phone
   and a laptop (`/dev/emails/<kind>` locally; real sends in test mode).

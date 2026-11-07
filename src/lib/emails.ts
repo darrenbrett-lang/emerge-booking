@@ -184,9 +184,9 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       p(`<strong>Bring photo ID.</strong> Over-18s only. ID is checked on the door, and the name on your booking is the name on the list.`) +
       accessHtml +
       h2("What's on") +
-      p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br>DJ Ti Balo. An eclectic mix of house, disco and Afro beats.`) +
-      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br>Get into creativity. See new art up close. Ask the person who made it.`) +
-      p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br>People you’ll vibe with. Dance, talk, watch, listen, play.`) +
+      p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br>DJ Ti Balo. House, disco and Afro beats.`) +
+      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br>Get into creativity. Grillz in the making. Alice’s magazine. I Ching readings.`) +
+      p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br>Find your people. Dance, talk, watch, listen, play.`) +
       p(esc(EVENT.dress), true) +
       invitesHtml +
       h2("Can't make it?") +
@@ -208,9 +208,9 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     "Bring photo ID. Over-18s only. ID is checked on the door.",
     accessText,
     "WHAT'S ON",
-    "01 / MUSIC: DJ Ti Balo. An eclectic mix of house, disco and Afro beats.",
-    "02 / CULTURE: Get into creativity. See new art up close. Ask the person who made it.",
-    "03 / COMPANY: People you’ll vibe with. Dance, talk, watch, listen, play.",
+    "01 / MUSIC: DJ Ti Balo. House, disco and Afro beats.",
+    "02 / CULTURE: Get into creativity. Grillz in the making. Alice’s magazine. I Ching readings.",
+    "03 / COMPANY: Find your people. Dance, talk, watch, listen, play.",
     EVENT.dress,
     invitesText,
     "CAN'T MAKE IT?",

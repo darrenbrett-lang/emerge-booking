@@ -131,37 +131,38 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               </p>
             </div>
             <div className="experience-programme">
-              <p className="eyebrow">What you can expect on 27th Nov</p>
+              <p className="eyebrow">On the night</p>
               <div className="programme-grid">
                 <div>
                   <span className="programme-number">01 / MUSIC</span>
                   <h3>DJ Ti Balo</h3>
-                  <p>An eclectic mix of house, disco, and Afro beats.</p>
+                  <p>House, disco and Afro beats.</p>
                   <p>Plenty of vibe worth coming and staying for.</p>
                 </div>
                 <div>
                   <span className="programme-number">02 / CULTURE</span>
-                  {/* Copy under 02 / Culture is to be rewritten by Darren. */}
                   <h3>
                     Get into
                     <br />
                     creativity.
                   </h3>
                   <p>
-                    See new art up close.
+                    Grillz in the making.
                     <br />
-                    Ask the person who made it.
+                    Alice’s magazine.
+                    <br />
+                    I Ching readings.
                   </p>
                 </div>
                 <div>
                   <span className="programme-number">03 / COMPANY</span>
                   <h3>
-                    People
+                    Find
                     <br />
-                    you’ll vibe with.
+                    your people.
                   </h3>
                   <p>
-                    Dance, talk, watch, listen, play
+                    Dance, talk, watch, listen, play.
                     <br />
                     We don’t expect anything but you.
                   </p>
