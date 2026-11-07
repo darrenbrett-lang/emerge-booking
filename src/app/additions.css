@@ -110,3 +110,82 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
 /* The two lines under "Make room…" take acid, the third brand colour beside
    ivory and pink (Darren, 7 Nov 2026). Electric blue fails contrast on night. */
 .invite-copy .invite-body{color:var(--acid)}
+
+/* Motion (Darren, 7 Nov 2026). One curve, slow to settle, each move plays
+   once. Load moves are CSS only; scroll moves wait for Motion.tsx to set
+   html.motion. Nothing moves when reduced motion is asked for. */
+:root{--ease:cubic-bezier(.16,1,.3,1)}
+.ln{display:block;padding-bottom:.12em;margin-bottom:-.12em;clip-path:inset(-.5em -1em 0 -1em)}
+.ln-i{display:block}
+.p1-copy h1 .ln,.p1-copy h1 .ln-i,.invitation-intro h2 .ln,.invitation-intro h2 .ln-i,.thermal-lead h2 .ln,.thermal-lead h2 .ln-i{color:inherit;white-space:normal}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes emerge-focus{from{opacity:0;filter:blur(12px);transform:translateY(16px)}to{opacity:1;filter:none;transform:none}}
+  @keyframes emerge-rise{from{transform:translateY(110%)}to{transform:none}}
+  @keyframes emerge-fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @keyframes emerge-settle{from{transform:scale(1.08)}to{transform:none}}
+  .p1-portrait{animation:emerge-settle 2.6s var(--ease) both}
+  .p1-brand>img{animation:emerge-focus 1.6s var(--ease) .2s both}
+  .p1-brand>p{animation:emerge-fade 1.2s var(--ease) .9s both}
+  .p1-invitation{animation:emerge-fade 1s var(--ease) .5s both}
+  .p1-copy h1 .ln-i{animation:emerge-rise 1.2s var(--ease) .6s both}
+  .p1-copy h1 .ln:nth-child(2) .ln-i{animation-delay:.7s}
+  .p1-copy .p1-descriptor,.p1-copy .p1-meta{animation:emerge-fade 1.1s var(--ease) 1s both}
+  .web-header{animation:emerge-fade 1.1s var(--ease) 1.1s both}
+
+  .motion [data-reveal]>.ln>.ln-i{transform:translateY(110%);transition:transform 1.2s var(--ease)}
+  .motion [data-reveal]>.ln:nth-child(2)>.ln-i{transition-delay:.1s}
+  .motion [data-reveal]>.ln:nth-child(3)>.ln-i{transition-delay:.2s}
+  .motion [data-reveal].is-in>.ln>.ln-i{transform:none}
+
+  .motion .date-punch[data-reveal]{transition:opacity 1s var(--ease) .25s,transform 1.4s var(--ease) .25s}
+  .motion .date-punch[data-reveal]:not(.is-in){opacity:0;transform:translateY(48px) rotate(-1deg)}
+
+  .motion .thermal-experience[data-reveal] .thermal-room{transition:clip-path 1.6s var(--ease),transform 2.4s var(--ease)}
+  .motion .thermal-experience[data-reveal]:not(.is-in) .thermal-room{clip-path:inset(16% 12%);transform:scale(1.12)}
+}
+
+/* The tooth star (Darren, 7 Nov 2026). Recoloured to acid in the photo; this
+   layer is the star and its glow alone, the same size and crop as the photo,
+   so it sits on the star at every width. It breathes once every few seconds. */
+.p1-portrait.p1-star{opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes star-pulse{0%,100%{opacity:0}45%{opacity:.95}}
+  .p1-portrait.p1-star{animation:emerge-settle 2.6s var(--ease) both,star-pulse 3.2s ease-in-out 2.2s infinite}
+}
+
+/* The thermal room on CCTV (Darren, 7 Nov 2026). A warmer copy of the photo
+   breathes in over each group, on different clocks, so the heat shifts. Over
+   it: fine grain, scan lines, a slow scan band and a soft vignette. */
+.thermal-heat{opacity:0;pointer-events:none}
+.heat-a{-webkit-mask-image:radial-gradient(38% 55% at 22% 62%,#000 30%,transparent 100%);mask-image:radial-gradient(38% 55% at 22% 62%,#000 30%,transparent 100%)}
+.heat-b{-webkit-mask-image:radial-gradient(45% 60% at 72% 48%,#000 30%,transparent 100%);mask-image:radial-gradient(45% 60% at 72% 48%,#000 30%,transparent 100%)}
+.cctv{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(4,6,24,.55) 100%),
+    repeating-linear-gradient(180deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px)}
+.cctv:before{content:'';position:absolute;inset:-50%;background:url(/images/grain-1.png);opacity:.55;mix-blend-mode:overlay}
+.cctv:after{content:'';position:absolute;left:0;right:0;top:0;height:22%;background:linear-gradient(180deg,transparent,rgba(190,215,255,.07) 50%,transparent);transform:translateY(-100%)}
+@media(max-width:760px){.cctv{height:660px;bottom:auto}}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes heat-breathe{0%,100%{opacity:0}50%{opacity:.85}}
+  @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-7%,4%)}40%{transform:translate(5%,-6%)}60%{transform:translate(-4%,-3%)}80%{transform:translate(6%,7%)}100%{transform:translate(0,0)}}
+  @keyframes scan{from{transform:translateY(-100%)}to{transform:translateY(560%)}}
+  .heat-a{animation:heat-breathe 7s ease-in-out 1s infinite}
+  .heat-b{animation:heat-breathe 9s ease-in-out 4s infinite}
+  .cctv:before{animation:grain .6s steps(1) infinite}
+  .cctv:after{animation:scan 9s linear 1.5s infinite}
+  .motion .thermal-experience[data-reveal] .cctv{transition:clip-path 1.6s var(--ease)}
+  .motion .thermal-experience[data-reveal]:not(.is-in) .cctv{clip-path:inset(16% 12%)}
+}
+
+/* The date card between phone and desktop (Darren, 7 Nov 2026). At full
+   width it left half the card empty, so from 521px the venue moves beside
+   the date, behind a rule, instead of under it. */
+@media(min-width:521px) and (max-width:760px){
+  .date-punch{display:grid;grid-template-columns:auto 1fr;column-gap:36px;align-items:start}
+  .date-punch>.date-label{grid-column:1/-1}
+  .date-punch>.date-numerals{grid-column:1;grid-row:2;font-size:clamp(78px,17vw,118px)}
+  .date-punch>.date-time{grid-column:1;grid-row:3;border-bottom:0;padding-bottom:0}
+  .date-punch>.venue-punch{grid-column:2;grid-row:2/4;align-self:stretch;border-left:1px solid;padding-left:32px}
+  .date-punch>.venue-punch>p{margin-top:6px}
+  .date-punch>a{grid-column:1/-1}
+}

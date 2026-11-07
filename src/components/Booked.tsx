@@ -67,7 +67,7 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
       <p className="small muted">Your confirmation is on its way to {booking.email}.</p>
       <div className="event-details">
         <p>{EVENT.name}</p>
-        <p>{EVENT.dateShort} · {EVENT.start}</p>
+        <p>{EVENT.dateLong} · {EVENT.start}</p>
         <p>
           {EVENT.venue}
           <br />

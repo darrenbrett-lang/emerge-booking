@@ -2,6 +2,7 @@
 import { EVENT } from "@/lib/event";
 import type { Availability } from "@/lib/db";
 import { Footer } from "./Footer";
+import { Motion } from "./Motion";
 import { RsvpForm } from "./RsvpForm";
 import { Sticky } from "./Sticky";
 
@@ -15,8 +16,9 @@ type Props = {
 // spec's changes: £15, 02 / CULTURE, no demo strip or controls, no
 // "Concept photography" label, and live availability.
 export function Invitation({ availability, inviter, inviteToken }: Props) {
-  const portrait = "/images/landscape-portrait-800.webp 800w, /images/landscape-portrait-1400.webp 1400w, /images/landscape-portrait-1672.webp 1672w";
+  const portrait = "/images/landscape-portrait-2-800.webp 800w, /images/landscape-portrait-2-1400.webp 1400w, /images/landscape-portrait-2-1672.webp 1672w";
   const thermal = "/images/thermal-800.webp 800w, /images/thermal-1400.webp 1400w, /images/thermal-1672.webp 1672w";
+  const heat = "/images/thermal-heat-1-800.webp 800w, /images/thermal-heat-1-1400.webp 1400w, /images/thermal-heat-1-1672.webp 1672w";
 
   return (
     <>
@@ -25,12 +27,14 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
           <div className="p1-panel">
             <img
               className="p1-portrait"
-              src="/images/landscape-portrait-1672.webp"
+              src="/images/landscape-portrait-2-1672.webp"
               srcSet={portrait}
               sizes="100vw"
               alt="Close-up of a laughing woman, printed in black and ivory halftone, with an acid-yellow star on her tooth"
               fetchPriority="high"
             />
+            {/* The star on her tooth, alone, glowing; pulses over the photo. */}
+            <img className="p1-portrait p1-star" src="/images/tooth-star-glow-1.webp" alt="" aria-hidden="true" />
             <header className="web-header">
               <span>27 Nov 2026 / Maidenhead</span>
               <a href="#explore">
@@ -44,9 +48,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             <div className="p1-copy">
               <p className="p1-invitation">{inviter ? `${inviter}’s invited you` : "You’re invited"}</p>
               <h1 id="campaign-heading">
-                Be there for
-                <br />
-                <span>the beginning</span>
+                <span className="ln"><span className="ln-i">Be there for</span></span>
+                <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>
               </h1>
               <p className="p1-descriptor">Music, culture &amp; meaningful connection.</p>
               <p className="p1-meta">
@@ -68,12 +71,10 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             <p className="eyebrow" id="sender-line">
               {inviter ? `${inviter} thought you’d like it here.` : "Thought this might be your kind of night"}
             </p>
-            <h2>
-              Make room
-              <br />
-              for what’s
-              <br />
-              been missing<span>.</span>
+            <h2 data-reveal>
+              <span className="ln"><span className="ln-i">Make room</span></span>
+              <span className="ln"><span className="ln-i">for what’s</span></span>
+              <span className="ln"><span className="ln-i">been missing<span>.</span></span></span>
             </h2>
             <p className="invite-body">Come as you are. Bring your people.</p>
             <p className="invite-body">
@@ -83,7 +84,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               I’m coming! <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <div className="date-punch">
+          <div className="date-punch" data-reveal>
             <p className="date-label">SAVE THE NIGHT</p>
             <p className="date-numerals">
               27<span>NOV</span>
@@ -105,7 +106,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
           </div>
         </section>
 
-        <section className="thermal-experience" aria-labelledby="people-heading">
+        <section className="thermal-experience" aria-labelledby="people-heading" data-reveal>
           <img
             className="thermal-room"
             src="/images/thermal-1672.webp"
@@ -114,13 +115,17 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             alt="People connecting in a listening room, their warmth picked out in yellow against electric blue"
             loading="lazy"
           />
+          {/* The same room running a little warmer, breathing in over two
+              groups, then the CCTV grain, scan lines and a slow scan band. */}
+          <img className="thermal-room thermal-heat heat-a" src="/images/thermal-heat-1-1672.webp" srcSet={heat} sizes="100vw" alt="" aria-hidden="true" loading="lazy" />
+          <img className="thermal-room thermal-heat heat-b" src="/images/thermal-heat-1-1672.webp" srcSet={heat} sizes="100vw" alt="" aria-hidden="true" loading="lazy" />
+          <div className="cctv" aria-hidden="true" />
           <div className="thermal-overlay">
             <div className="thermal-lead">
               <p className="eyebrow">Culture for the curious</p>
-              <h2 id="people-heading">
-                Come curious.
-                <br />
-                <span>See what happens.</span>
+              <h2 id="people-heading" data-reveal>
+                <span className="ln"><span className="ln-i">Come curious.</span></span>
+                <span className="ln"><span className="ln-i"><span>See what happens.</span></span></span>
               </h2>
               <p>
                 Let the music move you.
@@ -178,14 +183,13 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
           <div className="wrap rsvp-grid">
             <div>
               <p className="eyebrow">Your invitation</p>
-              <h2 id="rsvp-heading">
-                A night worth
-                <br />
-                going out for.
+              <h2 id="rsvp-heading" data-reveal>
+                <span className="ln"><span className="ln-i">A night worth</span></span>
+                <span className="ln"><span className="ln-i">going out for.</span></span>
               </h2>
               <div className="event-details">
                 <p>{EVENT.name}</p>
-                <p>{EVENT.dateShort} · {EVENT.start}</p>
+                <p>{EVENT.dateLong} · {EVENT.start}</p>
                 <p>
                   BEN&amp;JACK STUDIO
                   <br />
@@ -212,6 +216,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
       </main>
       <Footer />
       <Sticky />
+      <Motion />
     </>
   );
 }

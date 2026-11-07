@@ -4,7 +4,7 @@ export function EventDetails({ price = false }: { price?: boolean }) {
   return (
     <div className="event-details">
       <p>{EVENT.name}</p>
-      <p>{EVENT.dateShort} · {EVENT.start}</p>
+      <p>{EVENT.dateLong} · {EVENT.start}</p>
       <p>
         {EVENT.venue}
         <br />
