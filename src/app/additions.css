@@ -106,3 +106,7 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
 .footer-links{align-items:center}
 .footer .footer-instagram{display:inline-flex!important;align-items:center;justify-content:center;width:44px;height:44px;padding:0!important;color:var(--ivory)}
 .footer .footer-instagram:hover{color:var(--acid)}
+
+/* The two lines under "Make room…" take acid, the third brand colour beside
+   ivory and pink (Darren, 7 Nov 2026). Electric blue fails contrast on night. */
+.invite-copy .invite-body{color:var(--acid)}

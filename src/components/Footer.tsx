@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { CONTROLLER, INSTAGRAM } from "@/lib/event";
+import { INSTAGRAM } from "@/lib/event";
 
-// The hero's lockup, small, then who runs the site and the credit. Darren
-// chose (7 Nov 2026) to leave out the company number and registered office.
+// The hero's lockup, small, then the copyright line and the credit. Darren
+// chose (7 Nov 2026) to leave out the company line.
 export function Footer() {
   return (
     <div className="wrap">
@@ -28,7 +28,7 @@ export function Footer() {
         </div>
         <div className="footer-legal">
           <p>
-            © 2026 Emerge. This website is run by {CONTROLLER.name}.
+            © 2026 Emerge.
           </p>
           <p>
             Website developed by <a href="https://dabhands.delivery">DAB Hands</a>
