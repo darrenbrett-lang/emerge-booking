@@ -162,7 +162,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                     your people.
                   </h3>
                   <p>
-                    Dance, talk, watch, listen, play.
+                    Dance, talk, watch, listen, play, drink, be happy.
                     <br />
                     We don’t expect anything but you.
                   </p>
