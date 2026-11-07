@@ -186,7 +186,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       h2("What's on") +
       p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br>DJ Ti Balo. An eclectic mix of house, disco and Afro beats.`) +
       p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br>Get into creativity. See new art up close. Ask the person who made it.`) +
-      p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br>Find your people. Dance, talk, watch, listen, play.`) +
+      p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br>People you vibe with. Dance, talk, watch, listen, play.`) +
       p(esc(EVENT.dress), true) +
       invitesHtml +
       h2("Can't make it?") +
@@ -210,7 +210,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     "WHAT'S ON",
     "01 / MUSIC: DJ Ti Balo. An eclectic mix of house, disco and Afro beats.",
     "02 / CULTURE: Get into creativity. See new art up close. Ask the person who made it.",
-    "03 / COMPANY: Find your people. Dance, talk, watch, listen, play.",
+    "03 / COMPANY: People you vibe with. Dance, talk, watch, listen, play.",
     EVENT.dress,
     invitesText,
     "CAN'T MAKE IT?",

@@ -150,6 +150,17 @@ Card `4242 4242 4242 4242`, any future date, any CVC. The spec's checks:
 
 Also before go-live:
 
+- **Clear the test bookings** made in the Stripe sandbox before sales open:
+  `truncate email_log, payment_issues, transfers, invitations, holds,
+  waitlist_entries, bookings, guests;` in the Supabase SQL editor (the events
+  and organisers rows stay).
+- **Payments go to Suze's Stripe account; DAB Hands Delivery Ltd runs the
+  site and the guest data** (Darren, 7 Nov 2026). The privacy notice still
+  names DAB Hands as controller, which stays. Add a line under "Who we share it
+  with" saying payment is taken by Suze's business through her Stripe account,
+  which receives the name, email and amount (her legal name needed). Receipts
+  and card statements show her business. VAT and income are hers to account for.
+
 - Copy under **02 / CULTURE** is the demo's art copy until Darren rewrites it
   (`src/components/Invitation.tsx`, and the confirmation email in
   `src/lib/emails.ts`).

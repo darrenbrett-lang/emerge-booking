@@ -110,18 +110,20 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             <div className="thermal-lead">
               <p className="eyebrow">Culture for the curious</p>
               <h2 id="people-heading">
-                Different people.
+                Come curious.
                 <br />
-                <span>Same curiosity.</span>
+                <span>See what happens.</span>
               </h2>
               <p>
-                Follow the music. Get close to the art.
+                Let the music move you.
                 <br />
-                Talk to someone you haven’t met yet.
+                Spend time with what someone’s made.
+                <br />
+                Find something new in a stranger.
               </p>
             </div>
             <div className="experience-programme">
-              <p className="eyebrow">An evening your way</p>
+              <p className="eyebrow">What you can expect on 27th Nov</p>
               <div className="programme-grid">
                 <div>
                   <span className="programme-number">01 / MUSIC</span>
@@ -146,9 +148,9 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <div>
                   <span className="programme-number">03 / COMPANY</span>
                   <h3>
-                    Find
+                    People
                     <br />
-                    your people.
+                    you vibe with.
                   </h3>
                   <p>
                     Dance, talk, watch, listen, play
