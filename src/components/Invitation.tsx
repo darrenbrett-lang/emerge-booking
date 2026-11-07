@@ -149,7 +149,9 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                   <p>
                     Grillz in the making.
                     <br />
-                    Alice’s magazine.
+                    Alice’s new magazine.
+                    <br />
+                    Tooth gems.
                     <br />
                     I Ching readings.
                   </p>

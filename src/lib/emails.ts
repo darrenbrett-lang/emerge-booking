@@ -185,7 +185,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       accessHtml +
       h2("What's on") +
       p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br>DJ Ti Balo. House, disco and Afro beats.`) +
-      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br>Get into creativity. Grillz in the making. Alice’s magazine. I Ching readings.`) +
+      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br>Get into creativity. Grillz in the making. Alice’s new magazine. Tooth gems. I Ching readings.`) +
       p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br>Find your people. Dance, talk, watch, listen, play, drink, be happy.`) +
       p(esc(EVENT.dress), true) +
       invitesHtml +
@@ -209,7 +209,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     accessText,
     "WHAT'S ON",
     "01 / MUSIC: DJ Ti Balo. House, disco and Afro beats.",
-    "02 / CULTURE: Get into creativity. Grillz in the making. Alice’s magazine. I Ching readings.",
+    "02 / CULTURE: Get into creativity. Grillz in the making. Alice’s new magazine. Tooth gems. I Ching readings.",
     "03 / COMPANY: Find your people. Dance, talk, watch, listen, play, drink, be happy.",
     EVENT.dress,
     invitesText,
