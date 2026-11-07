@@ -92,8 +92,14 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
   .p1-banner{gap:12px}
 }
 
-/* Footer lockup: the wordmark with the hero's italic line under it. */
-.footer{align-items:flex-end}
+/* Footer: the wordmark with the hero's italic line under it, links on the
+   right, then the company line and the credit. */
+.footer{flex-direction:column;gap:32px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.footer-links{display:flex;gap:4px 22px;flex-wrap:wrap;justify-content:flex-end;font-size:14px}
+.footer-links a{display:inline-block;padding:12px 0}
+.footer-legal{border-top:1px solid var(--rule);padding-top:20px;font-size:12px;line-height:1.6;color:var(--muted);max-width:68ch}
+.footer-legal p+p{margin-top:8px}
 .footer-lockup{width:min(220px,55vw)}
 .footer .footer-lockup img{display:block;width:100%;height:auto}
 .footer-lockup p{margin:-4px 4% 0 0;text-align:right;color:var(--ivory);font-size:14px;font-style:italic;font-weight:700;letter-spacing:-.02em;white-space:nowrap}

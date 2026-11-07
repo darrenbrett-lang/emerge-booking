@@ -25,6 +25,9 @@ export const EVENT = {
 // and `npm run check:launch` fails.
 export const PRIVACY_REVIEWED: boolean = false;
 
+// Emerge's Instagram profile, shown in the footer. Null hides the link.
+export const INSTAGRAM: string | null = null;
+
 export const CONTROLLER = {
   name: "DAB Hands Delivery Ltd",
   companyNumber: "17209121",

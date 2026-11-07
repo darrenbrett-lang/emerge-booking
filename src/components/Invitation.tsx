@@ -158,7 +158,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                   <h3>
                     People
                     <br />
-                    you vibe with.
+                    you’ll vibe with.
                   </h3>
                   <p>
                     Dance, talk, watch, listen, play
