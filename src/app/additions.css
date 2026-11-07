@@ -69,3 +69,9 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
   .org table.stack tr{display:block;border-bottom:1px solid var(--rule);padding:10px 0}
   .org table.stack td{display:block;border:0;padding:3px 0}
 }
+
+/* The label over 01 / 02 / 03, "What you can expect on 27th Nov": set in the
+   display face like the hero descriptor, not as a small eyebrow (Darren,
+   7 Nov 2026). */
+.thermal-experience .experience-programme>.eyebrow{font:700 clamp(20px,2.2vw,30px)/1.2 var(--font-unbounded),sans-serif;letter-spacing:-.04em;text-transform:uppercase;color:var(--pink);margin-bottom:30px}
+@media(max-width:760px){.thermal-experience .experience-programme>.eyebrow{font-size:clamp(18px,5vw,24px);margin-bottom:22px}}
