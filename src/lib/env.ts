@@ -7,7 +7,13 @@ function need(name: string): string {
 }
 
 export const env = {
-  siteUrl: () => (process.env.SITE_URL ?? "http://localhost:3000").replace(/\/$/, ""),
+  // Production sets SITE_URL. Preview deployments leave it unset and use
+  // their own address, so Stripe and email links come back to the preview.
+  siteUrl: () =>
+    (
+      process.env.SITE_URL ??
+      (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000")
+    ).replace(/\/$/, ""),
   supabaseUrl: () => need("NEXT_PUBLIC_SUPABASE_URL"),
   supabaseAnonKey: () => need("NEXT_PUBLIC_SUPABASE_ANON_KEY"),
   supabaseServiceKey: () => need("SUPABASE_SERVICE_ROLE_KEY"),
