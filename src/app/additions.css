@@ -1,0 +1,71 @@
+/* New pieces the demo did not have, in its own vocabulary. */
+
+/* Tick boxes in the RSVP form: 44px targets, square, the form's own rule colour. */
+label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;min-height:44px;margin:4px 0 12px;font-size:15px;line-height:1.4;cursor:pointer}
+.rsvp-form .check input,.check input{appearance:none;-webkit-appearance:none;flex:none;width:26px;height:26px;min-height:0;margin:0;padding:0;border:2px solid currentColor;border-radius:0;background:transparent;display:grid;place-content:center;cursor:pointer}
+.check input:checked::after{content:'';width:12px;height:12px;background:currentColor}
+.check input:focus-visible{outline:3px solid var(--pink);outline-offset:3px}
+.check span{padding-top:2px}
+.rsvp-form .check+.button,.rsvp-form .check+button{margin-top:18px}
+.state-shell .check{color:var(--ivory)}
+.state-shell .rsvp-form input:not([type=checkbox]){color:var(--ivory);border-bottom-color:var(--ivory)}
+.state-shell .rsvp-form input::placeholder{color:#c9cdf6}
+.state-shell .rsvp-form label{color:var(--ivory)}
+.state-shell .error{color:var(--night)}
+.rsvp-form .button:disabled{opacity:.6}
+
+/* The toast sits fixed at the bottom of the viewport, as in the demo. */
+.rsvp-form .toast{font-size:14px}
+
+/* Footer: the line on the left, privacy on the right. */
+.footer a{color:inherit;text-underline-offset:3px}
+
+/* The holding page carries the wordmark. */
+.holding-wordmark{display:block;width:min(420px,80%);height:auto;margin:0 0 40px;mix-blend-mode:lighten}
+
+/* Share rows on the confirmation page keep the demo layout; links wrap. */
+.share-row{word-break:break-word}
+.copy-fallback{font:inherit}
+
+/* Document pages: privacy notice. */
+.doc{max-width:720px;margin:auto;padding:60px 24px 40px}
+.doc h1{font:850 clamp(36px,6vw,60px)/1.02 var(--font-unbounded),sans-serif;letter-spacing:-.06em;text-transform:uppercase;margin:0 0 30px}
+.doc h2{font:800 22px/1.2 var(--font-unbounded),sans-serif;letter-spacing:-.04em;color:var(--pink);margin:40px 0 12px}
+.doc p,.doc li{font-size:16px;line-height:1.6}
+.doc p+p{margin-top:12px}
+.doc ul{padding-left:20px;margin:10px 0}
+.doc a{color:var(--acid)}
+.doc .back{display:inline-block;margin-bottom:30px;font-size:13px}
+
+/* Organiser view. Plain, dense, phone first: it is used on the door. */
+.org{max-width:1100px;margin:auto;padding:20px 16px 80px;font-size:15px}
+.org h1{font:800 26px/1.1 var(--font-unbounded),sans-serif;letter-spacing:-.04em;margin:0 0 6px}
+.org h2{font:800 18px/1.2 var(--font-unbounded),sans-serif;letter-spacing:-.03em;margin:34px 0 12px;color:var(--pink)}
+.org .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.org .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:16px 0}
+.org .stat{border:1px solid var(--rule);padding:12px}
+.org .stat b{display:block;font:800 28px/1.1 var(--font-unbounded),sans-serif;letter-spacing:-.04em}
+.org .stat span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.org .alert{background:var(--pink);color:var(--night);padding:12px 14px;margin:10px 0}
+.org input[type=search],.org input[type=text],.org input[type=email]{width:100%;min-height:48px;padding:10px 12px;font-size:16px;background:transparent;color:var(--ivory);border:1px solid var(--muted);border-radius:0}
+.org table{width:100%;border-collapse:collapse;font-size:14px}
+.org th,.org td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+.org th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.org .btn{min-height:44px;padding:10px 14px;border:1px solid var(--ivory);background:transparent;color:var(--ivory);font-size:14px;cursor:pointer}
+.org .btn.primary{background:var(--acid);color:var(--night);border-color:var(--acid)}
+.org .btn.warn{border-color:var(--pink);color:var(--pink)}
+.org .tag{display:inline-block;padding:2px 8px;font-size:12px;border:1px solid currentColor}
+.org .tag.confirmed{color:var(--acid)}
+.org .tag.checked{background:var(--acid);color:var(--night);border-color:var(--acid)}
+.org .tag.held,.org .tag.offered,.org .tag.pending{color:var(--pink)}
+.org .tag.waiting{color:#9fb0ff}
+.org .tag.expired,.org .tag.transferred,.org .tag.cancelled{color:var(--muted)}
+.org .muted{color:var(--muted)}
+.org details{border-top:1px solid var(--rule);padding:8px 0}
+.org details summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+.org form.inline{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+@media(max-width:760px){
+  .org table.stack thead{display:none}
+  .org table.stack tr{display:block;border-bottom:1px solid var(--rule);padding:10px 0}
+  .org table.stack td{display:block;border:0;padding:3px 0}
+}
