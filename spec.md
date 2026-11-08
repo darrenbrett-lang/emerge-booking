@@ -121,7 +121,7 @@ Full UK GDPR compliance is a requirement. The build must include:
 
 - Data controller is DAB Hands Delivery Ltd (company number 17209121, registered office 4 Bray Road, Maidenhead, England, SL6 1UE; ICO registration ZC232396). The privacy notice shows all of these plus the contact email darren@dabhands.delivery.
 - Lawful basis stated: contract for bookings; legitimate interest or consent for future event invitations.
-- Future-event emails (changed 8 November 2026, soft opt-in): guests who book or join the waiting list are emailed about future Emerge events unless they tick "Don't email me about future Emerge events." (unticked by default). Every email carries a link to stop them, and so does the List-Unsubscribe header. Guests who accept a passed-on place keep the old opt-in tick, since they have not bought. The database column is still `marketing_consent`; it now means "may email about future events".
+- Future-event emails (8 November 2026): opt-in. Guests who book, join the waiting list or accept a passed-on place are emailed about future Emerge events only if they tick "Tell me about future Emerge events." (unticked by default). Only the 18-or-over box is required. Every email carries a link to stop them, and so does the List-Unsubscribe header. The soft opt-in was tried and dropped the same day: DAB Hands sends the emails but Suze is the seller, so it would not have applied.
 - Unsubscribe link in every non-transactional email.
 - Data subject rights: organiser view can export a guest's data and delete or anonymise a guest on request.
 - Retention: guests without marketing consent are anonymised a set period after the event (proposed 90 days, to cover disputes and chargebacks).

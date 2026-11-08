@@ -157,20 +157,16 @@ Also before go-live:
   waitlist_entries, bookings, guests;` in the Supabase SQL editor (the events
   and organisers rows stay).
 - **Payments go to Suze's Stripe account; DAB Hands Delivery Ltd runs the
-  site and the guest data** (Darren, 7 Nov 2026). The privacy notice still
-  names DAB Hands as controller, which stays. Add a line under "Who we share it
-  with" saying payment is taken by Suze's business through her Stripe account,
-  which receives the name, email and amount (her legal name needed). Receipts
-  and card statements show her business. VAT and income are hers to account for.
+  site and the guest data** (Darren, 8 Nov 2026). The seller is Susana Guette
+  Molina, trading as Emerge (not a registered company), set in `SELLER` in
+  `src/lib/event.ts`. The privacy notice names her as the seller and DAB Hands
+  as controller. Receipts and card statements show EMERGE. VAT and income are
+  hers to account for.
 
-- **Soft opt-in for future-event emails** (Darren, 8 Nov 2026). Booking and
-  waiting-list guests are emailed about future events unless they tick to say
-  no. The soft opt-in covers marketing by the business that made the sale; with
-  payments going to Suze's Stripe account and DAB Hands as controller, confirm
-  with someone qualified that the sender of future-event emails qualifies,
-  before the first one goes out. The organiser export's marketing column is
-  "yes" only for guests who booked or joined the waiting list, so someone who
-  abandoned a checkout is never on the mailing list.
+- **Future-event emails are opt-in** (Darren, 8 Nov 2026). Guests tick
+  "Tell me about future Emerge events." to be emailed; only the age box is
+  required. The organiser export's marketing column is "yes" only for guests
+  who ticked it.
 - Suze's sign-off on refunds and transfers.
 - Send every email to real Gmail, Outlook and Apple Mail accounts on a phone
   and a laptop (`/dev/emails/<kind>` locally; real sends in test mode).

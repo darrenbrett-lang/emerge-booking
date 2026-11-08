@@ -31,6 +31,20 @@ export const EVENT = {
 // and `npm run check:launch` fails.
 export const PRIVACY_REVIEWED: boolean = false;
 
+// Who sells the tickets (Darren, 8 Nov 2026). Suze sells them, trading as
+// Emerge, and takes payment through her own Stripe account. DAB Hands runs the
+// site and is the data controller; it is not the seller. Emerge is not a
+// registered company, so the seller is Suze as a sole trader. Her full name
+// goes in fullName; until then the notice says "Suze" and
+// `npm run check:launch` fails.
+export const SELLER = {
+  firstName: "Suze",
+  fullName: "Susana Guette Molina" as string | null,
+  tradingAs: "Emerge",
+  statementDescriptor: "EMERGE",
+};
+export const sellerName = () => SELLER.fullName ?? SELLER.firstName;
+
 // Emerge's Instagram profile, shown in the footer. Null hides the link.
 export const INSTAGRAM: string | null = null;
 

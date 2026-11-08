@@ -93,9 +93,9 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
       name,
       email,
       age: true,
-      // Soft opt-in (Darren, 8 Nov 2026): guests who book or join the waiting
-      // list hear about future Emerge events unless they tick to say no.
-      marketing: form.get("no_marketing") !== "on",
+      // Opt-in (Darren, 8 Nov 2026): only guests who tick the box hear about
+      // future Emerge events. Only the age box is required.
+      marketing: form.get("marketing") === "on",
       invite: inviteToken,
       price: waitlist ? undefined : String(form.get("price") ?? ""),
       website: form.get("website"),
@@ -196,8 +196,8 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
         <span>I’m 18 or over. ID is checked on the door.</span>
       </label>
       <label className="check">
-        <input type="checkbox" name="no_marketing" />
-        <span>Don’t email me about future Emerge events.</span>
+        <input type="checkbox" name="marketing" />
+        <span>Tell me about future Emerge events.</span>
       </label>
       <button className="button dark" type="submit" id="rsvp-button" disabled={pending}>
         {waitlist ? "Join the waiting list" : "Continue to checkout"} <span aria-hidden="true">↗︎</span>
@@ -211,8 +211,8 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
         <details>
           <summary>How we use your details</summary>
           <p>
-            We use your name and email to manage your booking and send your confirmation. We’ll also tell you about
-            future Emerge events, unless you tick the box to say no. Every email has a link to stop them. Read the{" "}
+            We use your name and email to manage your booking and send your confirmation. If you tick the box, we’ll
+            also tell you about future Emerge events. Every email has a link to stop them. Read the{" "}
             <Link href="/privacy">privacy notice</Link>.
           </p>
         </details>

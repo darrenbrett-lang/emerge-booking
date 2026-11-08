@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
-import { CONTROLLER, PRIVACY_REVIEWED } from "@/lib/event";
+import { CONTROLLER, PRIVACY_REVIEWED, SELLER, sellerName } from "@/lib/event";
 
 export const metadata = { title: "Emerge · Privacy notice" };
 
@@ -20,19 +20,23 @@ export default function Privacy() {
 
         <h2>Who we are</h2>
         <p>
-          Emerge bookings are run by {CONTROLLER.name}, the data controller for your details. Company number{" "}
+          This website and the guest list are run by {CONTROLLER.name}, the data controller for your details. Company number{" "}
           {CONTROLLER.companyNumber}. Registered office: {CONTROLLER.office}. Registered with the Information
           Commissioner’s Office under {CONTROLLER.ico}.
         </p>
         <p>
           Contact: <a href={`mailto:${CONTROLLER.email}`}>{CONTROLLER.email}</a>
         </p>
+        <p>
+          Tickets are sold by {sellerName()}, trading as {SELLER.tradingAs}. She takes payment through her own Stripe
+          account. {CONTROLLER.name} runs the website and bookings for her, and is not the seller.
+        </p>
 
         <h2>What we collect</h2>
         <ul>
           <li>Your name and email address.</li>
           <li>Your confirmation that you are 18 or over, and when you gave it.</li>
-          <li>Whether we may email you about future Emerge events, and since when.</li>
+          <li>Whether you asked to hear about future Emerge events, and when.</li>
           <li>
             Your booking: its reference, its status, whether you were invited by another guest and who, any transfer
             of your place, and whether you were checked in on the door.
@@ -62,29 +66,34 @@ export default function Privacy() {
             the door. The lawful basis is contract, and our legitimate interest in running a lawful over-18s event.
           </li>
           <li>
-            <strong>To tell you about future Emerge events</strong>: if you book a place or join the waiting list, we
-            email you about future Emerge events, which are the same kind of night you booked, unless you tick the box
-            to say no. The law allows this for people who have bought or asked to buy from us (the &ldquo;soft
-            opt-in&rdquo; in the Privacy and Electronic Communications Regulations). The lawful basis is our legitimate
-            interest in telling guests about future events. If someone passed their place to you, we only email you
-            about future events if you tick the box to ask; the lawful basis is then your consent. Either way, every
-            email has a link to stop them, and you can email us at any time.
+            <strong>To tell you about future Emerge events</strong>: only if you tick the box to ask. The emails come
+            from Emerge and we send them. The lawful basis is your consent. Every email has a link to stop them, and
+            you can email us at any time.
           </li>
           <li>
-            <strong>To keep records</strong>: payment records we must keep for tax and accounting. The lawful basis is
-            legal obligation.
+            <strong>To keep records</strong>: a record of each booking and payment, so we can deal with questions,
+            refunds and chargebacks, and so the seller can account for her sales. The lawful basis is our legitimate
+            interest, and the seller&rsquo;s, in keeping accurate records.
           </li>
         </ul>
         <p>Without your name and email we cannot take your booking. Hearing about future events is up to you.</p>
 
         <h2>Who we share it with</h2>
-        <p>We do not sell your details. We use these services to run bookings, under contracts that protect your data:</p>
+        <p>
+          We do not sell your details. We share them with the seller, and use these services to run bookings, under
+          contracts that protect your data:
+        </p>
         <ul>
           <li>
             <strong>Supabase</strong> stores the guest list, in its European data centre.
           </li>
           <li>
-            <strong>Stripe</strong> takes payment. Stripe also has its own legal duties for payment data; see{" "}
+            <strong>{sellerName()}</strong>, who sells the tickets, takes payment through her own Stripe account. She
+            receives your name, email and the amount you paid, and keeps the payment record for her tax return. Your
+            card statement shows {SELLER.statementDescriptor}.
+          </li>
+          <li>
+            <strong>Stripe</strong> processes the payment. Stripe also has its own legal duties for payment data; see{" "}
             <a href="https://stripe.com/gb/privacy">Stripe’s privacy policy</a>.
           </li>
           <li>
@@ -108,16 +117,16 @@ export default function Privacy() {
         <h2>How long we keep it</h2>
         <ul>
           <li>
-            If you said no to emails about future events, or stop them later, we anonymise your name and email 90
-            days after the event.
-            The gap covers questions, disputes and card chargebacks.
+            If you did not ask to hear about future events, or stop them later, we anonymise your name and email 90
+            days after the event. The gap covers questions, disputes and card chargebacks.
           </li>
           <li>
-            If we may email you about future events, we keep your name and email until you tell us to stop, then
+            If you asked to hear about future events, we keep your name and email until you tell us to stop, then
             stop emailing you straight away.
           </li>
           <li>
-            Payment records, without your name or email, are kept for six years, as the law requires.
+            Booking and payment records, without your name or email, are kept for six years. The seller keeps her
+            own payment records for as long as the tax rules require.
           </li>
         </ul>
 
