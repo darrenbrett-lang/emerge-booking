@@ -41,8 +41,8 @@ export default function Privacy() {
             A record of the emails we send you, and whether they were delivered.
           </li>
           <li>
-            A one-way scrambled version of your internet connection’s address, kept with an open checkout for up to 40
-            minutes, to stop one device holding many places. We cannot turn it back into the address.
+            A one-way scrambled version of your internet connection’s address, kept only while your checkout is
+            open, at most 45 minutes, to stop one device holding many places. We cannot turn it back into the address.
           </li>
         </ul>
         <p>
@@ -100,7 +100,8 @@ export default function Privacy() {
           approved transfer contracts.
         </p>
         <p>
-          The guest who invited you can see that you booked only if you tell them. On the night, the door list shows
+          If you pass on an invitation, the person you send it to sees your first name, on the invitation and in the
+          preview when the link is shared. The guest who invited you can see that you booked only if you tell them. On the night, the door list shows
           your name and booking reference.
         </p>
 

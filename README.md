@@ -91,6 +91,8 @@ go-live.
 6. Vault: add `emerge_site_url` and `emerge_cron_secret` (see the top of
    `supabase/migrations/0002_schedule.sql`), then run that file. It calls
    `/api/cron/tick` every minute.
+7. SQL editor: run `supabase/migrations/0003_clear_client_hash.sql`. It
+   clears the scrambled IP address from a checkout hold once it ends.
 
 ### 2. Stripe
 

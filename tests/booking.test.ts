@@ -3,7 +3,9 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { beforeEach, describe, expect, it } from "vitest";
 
-const SQL = readFileSync(join(__dirname, "../supabase/migrations/0001_booking.sql"), "utf8");
+const SQL = ["0001_booking.sql", "0003_clear_client_hash.sql"]
+  .map((f) => readFileSync(join(__dirname, "../supabase/migrations", f), "utf8"))
+  .join("\n");
 const EV = "maidenhead-2026-11";
 
 // London is on GMT in November, so these read as local times.
@@ -401,5 +403,36 @@ describe("privacy", () => {
     expect(g.marketing_consent).toBe(true);
     await fn("emerge_unsubscribe", g.unsubscribe_token, EARLY);
     expect((await q<{ marketing_consent: boolean }>("select marketing_consent from guests"))[0].marketing_consent).toBe(false);
+  });
+});
+
+describe("the scrambled IP address", () => {
+  const withClient = (n: number, now = EARLY) =>
+    fn("emerge_start_checkout", EV, `Guest ${n}`, `guest${n}@example.com`, true, false, null, now, "hash-abc");
+  const hashOf = async (id: unknown) =>
+    (await q<{ client_hash: string | null }>("select client_hash from holds where id = $1", [id]))[0].client_hash;
+
+  it("is kept while the checkout is open", async () => {
+    const h = await withClient(1);
+    expect(await hashOf(h.hold_id)).toBe("hash-abc");
+  });
+
+  it("goes when the guest pays", async () => {
+    const h = await withClient(1);
+    await fn("emerge_attach_session", h.hold_id, "cs_1", "https://checkout.stripe.test/1");
+    await fn("emerge_confirm_payment", "cs_1", "pi_1", 1500, EARLY);
+    expect(await hashOf(h.hold_id)).toBeNull();
+  });
+
+  it("goes when the checkout is abandoned", async () => {
+    const h = await withClient(1);
+    await fn("emerge_release_hold", h.hold_id, EARLY);
+    expect(await hashOf(h.hold_id)).toBeNull();
+  });
+
+  it("goes when the tick expires the hold", async () => {
+    const h = await withClient(1);
+    await fn("emerge_tick", EV, minutes(EARLY, 42));
+    expect(await hashOf(h.hold_id)).toBeNull();
   });
 });
