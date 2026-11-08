@@ -166,7 +166,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                   <p>
                     Get the lowdown on Alice <span className="nowrap">Streames-Smith’s</span> confronting new magazine,{" "}
                     <strong className="mag-title">{"--Y"}</strong>. Accessorise your smile with WBB Grillz. And get an
-                    I Ching reading from our resident sage, Charlie Castillio.
+                    I Ching reading from our resident sage, Charlie Castillo.
                   </p>
                 </div>
                 <div>

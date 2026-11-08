@@ -218,7 +218,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       accessHtml +
       h2("What's on") +
       p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br><strong>Get your groove on.</strong> DJ Ti Balo brings an eclectic mix of house, disco and Afrobass. A high-energy London DJ, mixing sounds from all over the world.`) +
-      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br><strong>Refresh your outlook.</strong> Get the lowdown on Alice <span style="white-space:nowrap">Streames-Smith’s</span> confronting new magazine, <strong style="white-space:nowrap">&#45;&#45;Y</strong>. Accessorise your smile with WBB Grillz. And get an I Ching reading from our resident sage, Charlie Castillio.`) +
+      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br><strong>Refresh your outlook.</strong> Get the lowdown on Alice <span style="white-space:nowrap">Streames-Smith’s</span> confronting new magazine, <strong style="white-space:nowrap">&#45;&#45;Y</strong>. Accessorise your smile with WBB Grillz. And get an I Ching reading from our resident sage, Charlie Castillo.`) +
       p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br><strong>Find your people.</strong> Dance, talk, watch, listen, play, drink, be happy. We don’t expect anything but you.`) +
       p(esc(EVENT.dress), true) +
       invitesHtml +
@@ -244,7 +244,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     accessText,
     "WHAT'S ON",
     "01 / MUSIC: Get your groove on. DJ Ti Balo brings an eclectic mix of house, disco and Afrobass. A high-energy London DJ, mixing sounds from all over the world.",
-    "02 / CULTURE: Refresh your outlook. Get the lowdown on Alice Streames-Smith’s confronting new magazine, --Y. Accessorise your smile with WBB Grillz. And get an I Ching reading from our resident sage, Charlie Castillio.",
+    "02 / CULTURE: Refresh your outlook. Get the lowdown on Alice Streames-Smith’s confronting new magazine, --Y. Accessorise your smile with WBB Grillz. And get an I Ching reading from our resident sage, Charlie Castillo.",
     "03 / COMPANY: Find your people. Dance, talk, watch, listen, play, drink, be happy. We don’t expect anything but you.",
     EVENT.dress,
     invitesText,
