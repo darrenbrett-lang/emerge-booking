@@ -4,6 +4,7 @@ import { StateShell } from "@/components/StateShell";
 import { db } from "@/lib/db";
 import { firstName } from "@/lib/event";
 import { gate } from "@/lib/gate";
+import { placeNumber } from "@/lib/place";
 
 // Stripe sends the guest here after paying. This page never confirms
 // anything: it shows the booking once the webhook has made it, and waits
@@ -31,6 +32,7 @@ export default async function BookedPage({ searchParams }: { searchParams: Promi
     );
   }
 
+  const place = data ? await placeNumber({ sessionId }) : null;
   const guest = data?.guest as unknown as { name: string; email: string } | undefined;
   const invites = ((data?.invitations as unknown as { slot: number; token: string }[]) ?? [])
     .sort((a, b) => a.slot - b.slot)
@@ -45,6 +47,7 @@ export default async function BookedPage({ searchParams }: { searchParams: Promi
               first: firstName(guest.name),
               email: guest.email,
               reference: data.reference,
+              place,
               passToken: data.status === "confirmed" ? data.pass_token : null,
               invites,
             }

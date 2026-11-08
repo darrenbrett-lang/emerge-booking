@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { EVENT } from "@/lib/event";
+import { TicketMark } from "./TicketMark";
 import type { Availability } from "@/lib/db";
 import { Footer } from "./Footer";
 import { Motion } from "./Motion";
+import { ThermalTouch } from "./ThermalTouch";
 import { RsvpForm } from "./RsvpForm";
 import { Sticky } from "./Sticky";
 
@@ -97,10 +99,11 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 STUDIO.
               </p>
               <span>
-                Unit B, Reform Road
+                {EVENT.town}
                 <br />
-                Maidenhead, Berkshire SL6 8BT
+                {EVENT.addressNote}
               </span>
+              <span className="venue-note">{EVENT.venueLine}</span>
             </div>
             <a href="#rsvp">I’M COMING! ↗</a>
           </div>
@@ -119,6 +122,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               groups, then the CCTV grain, scan lines and a slow scan band. */}
           <img className="thermal-room thermal-heat heat-a" src="/images/thermal-heat-1-1672.webp" srcSet={heat} sizes="100vw" alt="" aria-hidden="true" loading="lazy" />
           <img className="thermal-room thermal-heat heat-b" src="/images/thermal-heat-1-1672.webp" srcSet={heat} sizes="100vw" alt="" aria-hidden="true" loading="lazy" />
+          <ThermalTouch />
           <div className="cctv" aria-hidden="true" />
           <div className="thermal-overlay">
             <div className="thermal-lead">
@@ -188,15 +192,16 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i">going out for.</span></span>
               </h2>
               <div className="event-details">
-                <p>{EVENT.name}</p>
+                <TicketMark />
                 <p>{EVENT.dateLong} · {EVENT.start}</p>
                 <p>
                   BEN&amp;JACK STUDIO
                   <br />
-                  Unit B, Reform Road
+                  {EVENT.town}
                   <br />
-                  Maidenhead, Berkshire SL6 8BT
+                  {EVENT.addressNote}
                 </p>
+                <p className="venue-line">{EVENT.venueLine}</p>
                 <p className="ticket-price">
                   {EVENT.priceLabel} <span>per person</span>
                 </p>

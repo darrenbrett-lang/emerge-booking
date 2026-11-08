@@ -2,11 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Unbounded, Work_Sans } from "next/font/google";
 import "./emerge.css";
 import "./additions.css";
+import { env } from "@/lib/env";
 
 const unbounded = Unbounded({ subsets: ["latin"], variable: "--font-unbounded", display: "swap" });
 const work = Work_Sans({ subsets: ["latin"], variable: "--font-work", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.siteUrl()),
   title: "Emerge · You’ve been invited",
   description: "Emerge. A night that stays with you.",
   robots: { index: false, follow: false },

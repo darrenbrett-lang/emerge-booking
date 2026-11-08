@@ -3,6 +3,7 @@ import { Resend } from "resend";
 import { db, rpc } from "./db";
 import { env } from "./env";
 import { renderEmail } from "./emails";
+import { placeNumber } from "./place";
 
 type Row = {
   id: string;
@@ -36,7 +37,12 @@ export async function flushEmails(limit = 20) {
           .maybeSingle();
         if (g?.marketing_consent) unsubscribeUrl = `${env.siteUrl()}/unsubscribe/${g.unsubscribe_token}`;
       }
-      const email = renderEmail(row.kind, row.payload, { site: env.siteUrl(), unsubscribeUrl });
+      let payload = row.payload;
+      if (row.kind === "confirmation" && typeof payload.reference === "string") {
+        const place = await placeNumber({ reference: payload.reference }).catch(() => null);
+        if (place) payload = { ...payload, place };
+      }
+      const email = renderEmail(row.kind, payload, { site: env.siteUrl(), unsubscribeUrl });
       const headers: Record<string, string> = {};
       if (unsubscribeUrl) {
         headers["List-Unsubscribe"] = `<${unsubscribeUrl}>`;

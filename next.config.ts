@@ -4,6 +4,11 @@ import type { NextConfig } from "next";
 // page), so nothing is prerendered. Cache Components stays off.
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // The share cards read their font and images from /assets at run time.
+  outputFileTracingIncludes: {
+    "/opengraph-image": ["./assets/**"],
+    "/i/[token]/opengraph-image": ["./assets/**"],
+  },
   async headers() {
     return [
       {

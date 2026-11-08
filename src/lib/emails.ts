@@ -5,6 +5,7 @@
 // renders it. Every email has a plain-text version.
 
 import { CONTROLLER, EVENT, firstName, formatLondon } from "./event";
+import { formatPlace } from "./format-place";
 
 export type EmailKind =
   | "confirmation"
@@ -62,21 +63,23 @@ const detailsBlock = (rows: string[]) => `
   </td></tr>
 </table>`;
 
-function eventRows() {
+// secret: for people without a place yet, the town and a note, not the street.
+function eventRows(secret = false) {
   return [
     `<strong style="font:800 17px/1.2 ${HEAD};letter-spacing:-.02em">${esc(EVENT.name)}</strong>`,
     `${esc(EVENT.dateLong)}<br>${esc(EVENT.start)} to ${esc(EVENT.end)}`,
-    `${esc(EVENT.venue)}<br>${EVENT.addressLines.map(esc).join("<br>")}<br><a href="${esc(EVENT.mapUrl)}" style="color:${C.night}">Open in maps</a>`,
+    secret
+      ? `${esc(EVENT.venue)}<br>${esc(EVENT.town)}<br>${esc(EVENT.addressNote)}<br><em style="font-weight:700">${esc(EVENT.venueLine)}</em>`
+      : `${esc(EVENT.venue)}<br>${EVENT.addressLines.map(esc).join("<br>")}<br><a href="${esc(EVENT.mapUrl)}" style="color:${C.night}">Open in maps</a>`,
   ];
 }
 
-function eventText() {
+function eventText(secret = false) {
   return [
     EVENT.name,
     `${EVENT.dateLong}, ${EVENT.start} to ${EVENT.end}`,
     EVENT.venue,
-    ...EVENT.addressLines,
-    `Map: ${EVENT.mapUrl}`,
+    ...(secret ? [EVENT.town, EVENT.addressNote, EVENT.venueLine] : [...EVENT.addressLines, `Map: ${EVENT.mapUrl}`]),
   ].join("\n");
 }
 
@@ -178,6 +181,9 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       h1("You&rsquo;re<br>in.") +
       p(lead) +
       detailsBlock([
+        ...(typeof pl.place === "number"
+          ? [`<strong style="font:800 44px/1 ${HEAD};letter-spacing:-.04em">${esc(formatPlace(pl.place))}</strong><br><span style="font:700 11px/1.4 ${BODY};letter-spacing:.14em;text-transform:uppercase">of ${EVENT.capacity}</span>`]
+          : []),
         `<span style="font:700 11px/1.4 ${BODY};letter-spacing:.14em;text-transform:uppercase">Booking reference</span><br><strong style="font:800 26px/1.1 ${HEAD};letter-spacing:-.02em">${esc(ref)}</strong><br>${esc(name)}`,
         ...eventRows(),
       ]) +
@@ -200,6 +206,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     transferred ? `${firstName(String(pl.from_name ?? ""))} has passed their place on to you.` : "",
     `Glad you're coming, ${firstName(name)}.`,
     "",
+    typeof pl.place === "number" ? `You're ${formatPlace(pl.place)} of ${EVENT.capacity}.` : "",
     `Booking reference: ${ref}`,
     `Name: ${name}`,
     "",
@@ -233,7 +240,7 @@ function waitlistJoined(pl: P, ctx: Ctx): Rendered {
       h1("You&rsquo;re on<br>the waiting list.") +
       p(`Thanks, ${esc(name)}. If a place opens up, we'll email you straight away with a link to pay and a deadline to use it.`) +
       p("You haven't booked a place yet.", true) +
-      detailsBlock(eventRows()),
+      detailsBlock(eventRows(true)),
   );
   const text = [
     "WE'VE GOT YOUR NAME.",
@@ -241,7 +248,7 @@ function waitlistJoined(pl: P, ctx: Ctx): Rendered {
     `Thanks, ${name}. If a place opens up, we'll email you straight away with a link to pay and a deadline to use it.`,
     "You haven't booked a place yet.",
     "",
-    eventText(),
+    eventText(true),
     textFooter(ctx),
   ].join("\n");
   return { subject: "You're on the waiting list for Emerge", html, text };
@@ -259,7 +266,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
       p(`Good news travels, ${esc(name)}. We're holding a place for you at Emerge.`) +
       detailsBlock([
         `<span style="font:700 11px/1.4 ${BODY};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="font:800 22px/1.15 ${HEAD};letter-spacing:-.02em">${esc(deadline)}</strong><br>${esc(EVENT.priceLabel)} per person`,
-        ...eventRows(),
+        ...eventRows(true),
       ]) +
       button(url, "Pay and confirm my place") +
       p("If you haven't paid by then, the place goes to the next person on the list.", true),
@@ -272,7 +279,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
     `${EVENT.priceLabel} per person`,
     `Pay and confirm: ${url}`,
     "",
-    eventText(),
+    eventText(true),
     "",
     "If you haven't paid by then, the place goes to the next person on the list.",
     textFooter(ctx),
@@ -310,7 +317,7 @@ function transferOffer(pl: P, ctx: Ctx): Rendered {
     eyebrow("A little word of mouth") +
       h1(`${esc(firstName(from))}&rsquo;s<br>passing it on.`) +
       p(`${esc(to)}, ${esc(from)} can't make it and would like you to have their place at Emerge. It's already paid for.`) +
-      detailsBlock(eventRows()) +
+      detailsBlock(eventRows(true)) +
       p(`To take it, confirm you're 18 or over. Do it by ${esc(deadline)}, or the place stays with ${esc(firstName(from))}.`) +
       button(url, "Take the place"),
   );
@@ -318,7 +325,7 @@ function transferOffer(pl: P, ctx: Ctx): Rendered {
     "A LITTLE WORD OF MOUTH",
     `${to}, ${from} can't make it and would like you to have their place at Emerge. It's already paid for.`,
     "",
-    eventText(),
+    eventText(true),
     "",
     `To take it, confirm you're 18 or over by ${deadline}: ${url}`,
     textFooter(ctx),

@@ -9,8 +9,14 @@ export const EVENT = {
   end: "12:30 am",
   venue: "BEN&JACK STUDIO",
   addressLines: ["Unit B, Reform Road", "Maidenhead, Berkshire SL6 8BT"],
+  // The address is the secret (Darren, 8 Nov 2026): until someone has a place,
+  // pages and emails show the town and this line instead of the street.
+  town: "Maidenhead, Berkshire",
+  addressNote: "The address comes with your ticket.",
+  venueLine: "The coolest space in town, and its best kept secret.",
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=BEN%26JACK%20STUDIO%2C%20Unit%20B%2C%20Reform%20Road%2C%20Maidenhead%20SL6%208BT",
+  capacity: 100,
   pricePence: 1500,
   priceLabel: "£15",
   dress: "Wear what feels like you. Just make it a night out.",

@@ -4,6 +4,14 @@ import { StateShell } from "@/components/StateShell";
 import { db } from "@/lib/db";
 import { firstName } from "@/lib/event";
 import { gate } from "@/lib/gate";
+import { inviterName } from "@/lib/inviter";
+import type { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ token: string }> }): Promise<Metadata> {
+  const name = await inviterName((await params).token).catch(() => null);
+  const title = name ? `${name}’s invited you · Emerge` : "Emerge · You’ve been invited";
+  return { title, openGraph: { title, description: "A night that stays with you. Friday 27 November, Maidenhead." } };
+}
 
 export default async function InvitePage({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;

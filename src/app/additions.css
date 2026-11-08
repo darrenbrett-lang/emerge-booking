@@ -189,3 +189,28 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
   .date-punch>.venue-punch>p{margin-top:6px}
   .date-punch>a{grid-column:1/-1}
 }
+
+/* The line under the address on the date card (Darren, 7 Nov 2026), set
+   like the hero's "A night that stays with you.": italic, bold. */
+.venue-punch>.venue-note{display:block;margin-top:14px;font-style:italic;font-weight:700;font-size:16px;line-height:1.35}
+
+/* Touch the room and it warms: the canvas from ThermalTouch.tsx, the photo's
+   box exactly, under the CCTV grain. */
+.thermal-touch{position:absolute;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+@media(max-width:760px){.thermal-touch{height:660px}}
+@media(prefers-reduced-motion:no-preference){
+  .motion .thermal-experience[data-reveal] .thermal-touch{transition:clip-path 1.6s var(--ease)}
+  .motion .thermal-experience[data-reveal]:not(.is-in) .thermal-touch{clip-path:inset(16% 12%)}
+}
+
+/* The venue line where the address is still a secret, and the guest's
+   number on "You're in" (Darren, 8 Nov 2026). */
+.venue-line{font-style:italic;font-weight:700}
+.place-number{font:850 clamp(64px,16vw,120px)/.95 var(--font-unbounded),sans-serif;letter-spacing:-.06em;color:var(--acid);margin:6px 0 22px!important}
+.place-number>span{display:block;font:700 13px/1.4 var(--font-work),sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);margin-top:10px}
+
+/* The ticket's top line: charcoal wordmark and the edition number. */
+.event-details .ticket-mark{display:flex;align-items:flex-end;gap:14px;margin-bottom:22px}
+.ticket-mark>img{display:block;width:150px;height:auto}
+.ticket-mark>span{font:850 34px/1 var(--font-unbounded),sans-serif;letter-spacing:-.06em;color:var(--night);padding-bottom:4px}
+.ticket-mark.on-dark>span{color:var(--acid)}

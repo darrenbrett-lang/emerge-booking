@@ -3,10 +3,12 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { EVENT } from "@/lib/event";
+import { TicketMark } from "./TicketMark";
+import { formatPlace } from "@/lib/format-place";
 import { ShareSlots } from "./ShareSlots";
 import { StateShell } from "./StateShell";
 
-type Booking = { first: string; email: string; reference: string; passToken: string | null; invites: string[] };
+type Booking = { first: string; email: string; reference: string; place: number | null; passToken: string | null; invites: string[] };
 
 export function Booked({ sessionId, booking }: { sessionId: string; booking: Booking | null }) {
   const router = useRouter();
@@ -63,10 +65,15 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
         <br />
         in.
       </h1>
+      {booking.place && (
+        <p className="place-number" aria-label={`You are number ${booking.place} of ${EVENT.capacity}`}>
+          {formatPlace(booking.place)} <span>of {EVENT.capacity}</span>
+        </p>
+      )}
       <p>Glad you’re coming, {booking.first}.</p>
       <p className="small muted">Your confirmation is on its way to {booking.email}.</p>
       <div className="event-details">
-        <p>{EVENT.name}</p>
+        <TicketMark dark />
         <p>{EVENT.dateLong} · {EVENT.start}</p>
         <p>
           {EVENT.venue}
