@@ -75,9 +75,13 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <span className="ln"><span className="ln-i">for what’s</span></span>
               <span className="ln"><span className="ln-i">been missing<span>.</span></span></span>
             </h2>
-            <p className="invite-body">Come as you are, or bring your people.</p>
             <p className="invite-body">
-              Leave with a new favourite track, a new idea, someone you are glad you met; and more energy for what follows.
+              Come on your own.
+              <br />
+              Or bring your people.
+            </p>
+            <p className="invite-body">
+              Leave with a new favourite track, a new idea or someone you’re glad you met.
             </p>
             <a className="invite-link" href="#rsvp">
               I’m coming! <span aria-hidden="true">↗︎</span>
@@ -124,8 +128,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
           <div className="thermal-overlay">
             <div className="thermal-lead">
               <h2 id="people-heading" data-reveal>
-                <span className="ln"><span className="ln-i">Come curious.</span></span>
-                <span className="ln"><span className="ln-i"><span>See what happens.</span></span></span>
+                <span className="ln"><span className="ln-i">Arrive with curiosity.</span></span>
+                <span className="ln"><span className="ln-i"><span>Notice where it takes you.</span></span></span>
               </h2>
               <p>
                 <span className="thermal-line">Let the music move you.</span>

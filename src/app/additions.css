@@ -229,7 +229,7 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 84'%3E%3Cpath d='M24 2A58 58 0 0 0 82 60' fill='none' stroke='%23EFFF00' stroke-width='4.5' stroke-linecap='round' stroke-dasharray='0 9.6'/%3E%3C/svg%3E") no-repeat}
 @media(max-width:760px){.rsvp-section .event-details:after{width:66px;height:66px;background-size:66px}}
 
-/* The three lines under "Come curious." sit over the busy thermal photo; on
+/* The three lines under the thermal headline sit over the busy thermal photo; on
    a phone they go up a size and bold, with a soft dark halo (Darren, 8 Nov). */
 @media(max-width:760px){.thermal-lead>p:last-child{font-size:clamp(16px,4.4vw,18px);font-weight:700;line-height:1.45;text-shadow:0 1px 14px rgba(8,13,43,.9),0 0 3px rgba(8,13,43,.7)}}
 /* One sentence per line. Where a phone is too narrow for that (under about
@@ -242,9 +242,8 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
    (<br>, .ln, .thermal-line) keep their breaks. */
 p,li,label,summary,.venue-punch>span,.event-details p{text-wrap:pretty}
 h1,h2,h3,.ln-i{text-wrap:balance}
-/* "See what happens." holds one line on every phone, so "happens." never
-   drops on its own: the headline is sized to the width it has. */
-@media(max-width:760px){.thermal-lead h2{font-size:min(54px,calc((100vw - 44px) / 11.3))}}
+/* "Arrive with curiosity. / Notice where it takes you." On a phone each
+   sentence splits into two even lines rather than shrinking to fit. */
 
 /* On a phone the venue takes the header's second line (Darren, 8 Nov). */
 @media(max-width:760px){.p1-meta .p1-meta-dot{display:none}.p1-meta .p1-meta-venue{display:block}}
