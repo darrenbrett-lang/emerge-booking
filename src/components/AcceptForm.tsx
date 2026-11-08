@@ -57,7 +57,7 @@ export function AcceptForm({ token }: { token: string }) {
         <span>Tell me about future Emerge events.</span>
       </label>
       <button className="button" type="submit" disabled={busy}>
-        Take the place <span aria-hidden="true">↗</span>
+        Take the place <span aria-hidden="true">↗︎</span>
       </button>
       <p className="small muted">
         We’ll use your name and email for this booking. <Link href="/privacy">Privacy notice</Link>.

@@ -55,14 +55,15 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               </h1>
               <p className="p1-meta">
                 Friday 27 Nov <span aria-hidden="true">·</span> {EVENT.start}{" "}
-                <span aria-hidden="true">·</span> {EVENT.venue}, Maidenhead
+                <span className="p1-meta-dot" aria-hidden="true">·</span>{" "}
+                <span className="p1-meta-venue">{EVENT.venue}, Maidenhead</span>
               </p>
             </div>
           </div>
           <a className="button p1-banner" id="hero-cta" href="#rsvp">
-            <span>Put me on the list!</span>
+            <span>Get me in!</span>
             <span className="p1-price">
-              Tickets {EVENT.priceLabel} <span aria-hidden="true">↗</span>
+              Tickets {EVENT.priceLabel} <span aria-hidden="true">↗︎</span>
             </span>
           </a>
         </section>
@@ -79,7 +80,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               Leave with a new favourite track, a new idea, someone you are glad you met; and more energy for what follows.
             </p>
             <a className="invite-link" href="#rsvp">
-              I’m coming! <span aria-hidden="true">↗</span>
+              I’m coming! <span aria-hidden="true">↗︎</span>
             </a>
           </div>
           <div className="date-punch" data-reveal>
@@ -101,7 +102,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               </span>
               <span className="venue-note">{EVENT.venueLine}</span>
             </div>
-            <a href="#rsvp">I’M COMING! ↗</a>
+            <a href="#rsvp">I’M COMING! ↗︎</a>
           </div>
         </section>
 
@@ -122,17 +123,14 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
           <div className="cctv" aria-hidden="true" />
           <div className="thermal-overlay">
             <div className="thermal-lead">
-              <p className="eyebrow">Culture for the curious</p>
               <h2 id="people-heading" data-reveal>
                 <span className="ln"><span className="ln-i">Come curious.</span></span>
                 <span className="ln"><span className="ln-i"><span>See what happens.</span></span></span>
               </h2>
               <p>
-                Let the music move you.
-                <br />
-                Spend time with what someone’s made.
-                <br />
-                Find something new in a stranger.
+                <span className="thermal-line">Let the music move you.</span>
+                <span className="thermal-line">Spend time with what someone’s made.</span>
+                <span className="thermal-line">Find something new in a stranger.</span>
               </p>
             </div>
             <div className="experience-programme">

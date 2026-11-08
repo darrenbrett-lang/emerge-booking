@@ -51,7 +51,7 @@ export function OfferPay({ token }: { token: string }) {
         {error}
       </div>
       <button className="button" type="button" onClick={pay} disabled={pending}>
-        Pay and confirm my place <span aria-hidden="true">↗</span>
+        Pay and confirm my place <span aria-hidden="true">↗︎</span>
       </button>
       <p className="small muted">£15 per person. No refunds, but you can pass your place on.</p>
     </>

@@ -30,7 +30,7 @@ export function Sticky() {
   return (
     <div className="sticky" id="sticky" hidden={!show}>
       <a className="button" href="#rsvp">
-        Put me on the list! <span aria-hidden="true">↗</span>
+        Get me in! <span aria-hidden="true">↗︎</span>
       </a>
     </div>
   );

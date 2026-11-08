@@ -84,7 +84,7 @@ export function PassForm({ token, reference, pending }: { token: string; referen
             {error}
           </div>
           <button className="button" type="button" disabled={busy} onClick={() => post("/api/transfer", { token, ...confirming })}>
-            Yes, send it to them <span aria-hidden="true">↗</span>
+            Yes, send it to them <span aria-hidden="true">↗︎</span>
           </button>
           <button className="button outline" type="button" onClick={() => setConfirming(null)}>
             Go back
@@ -117,7 +117,7 @@ export function PassForm({ token, reference, pending }: { token: string; referen
             <input id="to-email" name="email" type="email" inputMode="email" autoComplete="off" maxLength={254} required />
           </div>
           <button className="button" type="submit">
-            Continue <span aria-hidden="true">↗</span>
+            Continue <span aria-hidden="true">↗︎</span>
           </button>
         </form>
       )}

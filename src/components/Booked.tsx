@@ -96,7 +96,7 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
       )}
       {booking.passToken && (
         <a className="button outline" href={`/pass/${booking.passToken}`}>
-          I can’t make it <span aria-hidden="true">↗</span>
+          I can’t make it <span aria-hidden="true">↗︎</span>
         </a>
       )}
     </StateShell>

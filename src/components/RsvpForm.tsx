@@ -7,8 +7,8 @@ import { useEffect, useRef, useState } from "react";
 type Avail = { remaining: number | null; full: boolean; phase: string };
 
 const MESSAGES: Record<string, string> = {
-  invalid_name: "Let us know your name.",
-  invalid_email: "Pop in a valid email address so we can confirm your place.",
+  invalid_name: "We’re gonna need that name!",
+  invalid_email: "Can we have that email cuz?",
   age_required: "Tick the box to confirm you’re 18 or over.",
   already_booked: "You’re already on the list with that email. Your confirmation email has everything you need.",
   has_offer: "We’re holding a place for you. Use the link in your offer email to pay for it.",
@@ -191,7 +191,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
         <span>Tell me about future Emerge events.</span>
       </label>
       <button className="button dark" type="submit" id="rsvp-button" disabled={pending}>
-        {waitlist ? "Join the waiting list" : "Continue to checkout"} <span aria-hidden="true">↗</span>
+        {waitlist ? "Join the waiting list" : "Continue to checkout"} <span aria-hidden="true">↗︎</span>
       </button>
       <p className="small muted">
         {waitlist

@@ -36,7 +36,7 @@ export default async function Unsubscribe({
       <p>We’ll stop telling you about future Emerge events. Emails about a booking you’ve made will still arrive.</p>
       <form action={unsubscribe}>
         <button className="button" type="submit">
-          Yes, stop them <span aria-hidden="true">↗</span>
+          Yes, stop them <span aria-hidden="true">↗︎</span>
         </button>
       </form>
     </StateShell>
