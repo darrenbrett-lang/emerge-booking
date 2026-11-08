@@ -15,7 +15,7 @@ export default function Privacy() {
         <h1>Privacy notice</h1>
         <p>
           This explains what we do with your details when you book a place at Emerge, join the waiting list, or are
-          passed a place by someone else. Last updated 7 November 2026.
+          passed a place by someone else. Last updated 8 November 2026.
         </p>
 
         <h2>Who we are</h2>
@@ -32,7 +32,7 @@ export default function Privacy() {
         <ul>
           <li>Your name and email address.</li>
           <li>Your confirmation that you are 18 or over, and when you gave it.</li>
-          <li>Whether you asked to hear about future Emerge events, and when.</li>
+          <li>Whether we may email you about future Emerge events, and since when.</li>
           <li>
             Your booking: its reference, its status, whether you were invited by another guest and who, any transfer
             of your place, and whether you were checked in on the door.
@@ -62,15 +62,20 @@ export default function Privacy() {
             the door. The lawful basis is contract, and our legitimate interest in running a lawful over-18s event.
           </li>
           <li>
-            <strong>To tell you about future Emerge events</strong>: only if you ticked the box. The lawful basis is
-            your consent. You can withdraw it at any time with the link in our emails, or by emailing us.
+            <strong>To tell you about future Emerge events</strong>: if you book a place or join the waiting list, we
+            email you about future Emerge events, which are the same kind of night you booked, unless you tick the box
+            to say no. The law allows this for people who have bought or asked to buy from us (the &ldquo;soft
+            opt-in&rdquo; in the Privacy and Electronic Communications Regulations). The lawful basis is our legitimate
+            interest in telling guests about future events. If someone passed their place to you, we only email you
+            about future events if you tick the box to ask; the lawful basis is then your consent. Either way, every
+            email has a link to stop them, and you can email us at any time.
           </li>
           <li>
             <strong>To keep records</strong>: payment records we must keep for tax and accounting. The lawful basis is
             legal obligation.
           </li>
         </ul>
-        <p>Without your name and email we cannot take your booking. Ticking the future-events box is optional.</p>
+        <p>Without your name and email we cannot take your booking. Hearing about future events is up to you.</p>
 
         <h2>Who we share it with</h2>
         <p>We do not sell your details. We use these services to run bookings, under contracts that protect your data:</p>
@@ -102,11 +107,12 @@ export default function Privacy() {
         <h2>How long we keep it</h2>
         <ul>
           <li>
-            If you did not ask to hear about future events, we anonymise your name and email 90 days after the event.
+            If you said no to emails about future events, or stop them later, we anonymise your name and email 90
+            days after the event.
             The gap covers questions, disputes and card chargebacks.
           </li>
           <li>
-            If you asked to hear about future events, we keep your name and email until you withdraw consent, then
+            If we may email you about future events, we keep your name and email until you tell us to stop, then
             stop emailing you straight away.
           </li>
           <li>

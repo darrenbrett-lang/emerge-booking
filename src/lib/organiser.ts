@@ -76,7 +76,9 @@ export async function loadDashboard() {
       transferTo: pending ? `${pending.to_name} (${pending.to_email})` : null,
       waitPosition: wait?.status === "waiting" ? wait.position : null,
       deadline: wait?.status === "offered" ? wait.offer_deadline : null,
-      marketing: g.marketing_consent,
+      // Soft opt-in covers people who bought or asked to buy. Someone who
+      // opened a checkout and walked away did neither, so the export says no.
+      marketing: g.marketing_consent && Boolean(booking || wait),
       anonymised: Boolean(g.anonymised_at),
       createdAt: g.created_at,
     };

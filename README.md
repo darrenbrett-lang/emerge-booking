@@ -161,6 +161,14 @@ Also before go-live:
   which receives the name, email and amount (her legal name needed). Receipts
   and card statements show her business. VAT and income are hers to account for.
 
+- **Soft opt-in for future-event emails** (Darren, 8 Nov 2026). Booking and
+  waiting-list guests are emailed about future events unless they tick to say
+  no. The soft opt-in covers marketing by the business that made the sale; with
+  payments going to Suze's Stripe account and DAB Hands as controller, confirm
+  with someone qualified that the sender of future-event emails qualifies,
+  before the first one goes out. The organiser export's marketing column is
+  "yes" only for guests who booked or joined the waiting list, so someone who
+  abandoned a checkout is never on the mailing list.
 - Suze's sign-off on refunds and transfers.
 - Send every email to real Gmail, Outlook and Apple Mail accounts on a phone
   and a laptop (`/dev/emails/<kind>` locally; real sends in test mode).
