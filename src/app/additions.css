@@ -214,3 +214,10 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
 .ticket-mark>img{display:block;width:150px;height:auto}
 .ticket-mark>span{font:850 34px/1 var(--font-unbounded),sans-serif;letter-spacing:-.06em;color:var(--night);padding-bottom:4px}
 .ticket-mark.on-dark>span{color:var(--acid)}
+
+/* The booking fields as solid charcoal boxes, typed text in pink, so they read
+   as places to type on the acid ground (Darren, 8 Nov 2026). */
+.rsvp-section .rsvp-form input:not([type=checkbox]){background:var(--night);color:var(--pink);border:0;border-radius:0;padding:16px 18px;min-height:58px;caret-color:var(--acid)}
+.rsvp-section .rsvp-form input:not([type=checkbox])::placeholder{color:#a9a69c;opacity:1}
+.rsvp-section .rsvp-form input:not([type=checkbox]):-webkit-autofill{-webkit-box-shadow:0 0 0 60px var(--night) inset;-webkit-text-fill-color:var(--pink)}
+.rsvp-section .rsvp-form input:not([type=checkbox]):focus-visible{outline:3px solid var(--electric);outline-offset:3px}
