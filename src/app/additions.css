@@ -380,3 +380,6 @@ html,body{overflow-x:clip}
 
 /* P1 descriptor back (Darren, 8 Nov 2026): balanced, so no word sits alone. */
 .p1-copy .p1-descriptor{text-wrap:balance}
+
+/* Price picker lead-in (Darren, 8 Nov 2026): bold, above the prices. */
+.price-picker legend{font-weight:700;font-size:16px;line-height:1.45;margin:0 0 14px;text-wrap:pretty;white-space:normal}

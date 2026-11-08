@@ -87,7 +87,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <br />
               Or bring your people.
             </p>
-            <p className="welcome-note">Either way, we’ll be there for a warm welcome.</p>
+            <p className="welcome-note">Either way, there will be a warm welcome waiting for you.</p>
             <p className="invite-body">Emerge with an easier feeling, new connections and ideas.</p>
             <a className="invite-link" href="#rsvp">
               I’m coming! <span aria-hidden="true">↗︎</span>
@@ -138,7 +138,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               </h2>
               <p>
                 <span className="thermal-line">Be moved by music.</span>
-                <span className="thermal-line">Spend time with what someone’s made.</span>
+                <span className="thermal-line">Take in other people’s creations.</span>
                 <span className="thermal-line">Find something inspiring in a stranger.</span>
               </p>
             </div>
@@ -178,8 +178,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                     your people.
                   </h3>
                   <p>
-                    <span className="prog-line">Dance, talk, watch, listen, play, drink, be happy.</span>
-                    <span className="prog-line">We don’t expect anything but you.</span>
+                    <span className="prog-line">Be yourself to inspire others.</span>
+                    <span className="prog-line">Emerge through music, fashion, moves, art, ideas.</span>
                   </p>
                 </div>
               </div>

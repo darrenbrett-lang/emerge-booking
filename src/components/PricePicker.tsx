@@ -13,7 +13,10 @@ export const PricePicker = forwardRef<HTMLInputElement, { idPrefix: string }>(fu
 
   return (
     <fieldset className="price-picker">
-      <legend>Choose your price</legend>
+      <legend>
+        We are working to create a space that nourishes new connections and ideas. Your contributions support the
+        building of a much-needed community.
+      </legend>
       <div className="price-options">
         {[...PRICE.presets.map(String), "other"].map((v) => (
           <label key={v} className={`price-option${choice === v ? " is-on" : ""}`}>
