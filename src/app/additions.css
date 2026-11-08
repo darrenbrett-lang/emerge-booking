@@ -365,3 +365,15 @@ a:not(.button):active,summary:active{opacity:.7}
 .price-note{margin:10px 0 0;font-size:14px;line-height:1.45}
 .offer-pay .price-picker{margin-top:26px}
 .offer-pay .button{width:100%}
+
+/* The magazine's name, --Y, set as typed: two hyphens, never joined into a
+   dash, never split across lines. */
+.mag-title{white-space:nowrap;font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+/* The programme copy grew (8 Nov 2026), so on a phone each heading sits
+   above its text, which takes the full width at 16px rather than a 13px
+   half column. */
+@media(max-width:760px){.programme-grid>div{display:block}.programme-grid p{font-size:16px;line-height:1.5;margin:12px 0 0;max-width:36em}}
+.nowrap{white-space:nowrap}
+.prog-line{display:block;text-wrap:balance}
+/* Nothing sideways: the stamp, scaled up before it lands, must never widen the page. */
+html,body{overflow-x:clip}

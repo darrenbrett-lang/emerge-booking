@@ -86,10 +86,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <br />
               Or bring your people.
             </p>
-            <p className="welcome-note">Coming on your own? We’ll be there for a warm welcome.</p>
-            <p className="invite-body">
-              Leave with a new favourite track, a new idea or someone you’re glad you met.
-            </p>
+            <p className="welcome-note">Either way, we’ll be there for a warm welcome.</p>
+            <p className="invite-body">Emerge with an easier feeling, new connections and ideas.</p>
             <a className="invite-link" href="#rsvp">
               I’m coming! <span aria-hidden="true">↗︎</span>
             </a>
@@ -148,24 +146,27 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <div className="programme-grid">
                 <div>
                   <span className="programme-number">01 / MUSIC</span>
-                  <h3>DJ Ti Balo</h3>
-                  <p>House, disco and Afro beats.</p>
+                  <h3>
+                    Get your
+                    <br />
+                    groove on.
+                  </h3>
+                  <p>
+                    DJ Ti Balo brings an eclectic mix of house, disco and Afrobass. A high-energy London DJ, mixing
+                    sounds from all over the world.
+                  </p>
                 </div>
                 <div>
                   <span className="programme-number">02 / CULTURE</span>
                   <h3>
-                    Get into
+                    Refresh
                     <br />
-                    creativity.
+                    your outlook.
                   </h3>
                   <p>
-                    Grillz in the making.
-                    <br />
-                    Alice’s new magazine.
-                    <br />
-                    Tooth gems.
-                    <br />
-                    I Ching readings.
+                    Get the lowdown on Alice <span className="nowrap">Streames-Smith’s</span> confronting new magazine,{" "}
+                    <strong className="mag-title">{"--Y"}</strong>. Accessorise your smile with WBB Grillz. And get an
+                    I Ching reading from our resident sage, Charlie Castillio.
                   </p>
                 </div>
                 <div>
@@ -176,9 +177,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                     your people.
                   </h3>
                   <p>
-                    Dance, talk, watch, listen, play, drink, be happy.
-                    <br />
-                    We don’t expect anything but you.
+                    <span className="prog-line">Dance, talk, watch, listen, play, drink, be happy.</span>
+                    <span className="prog-line">We don’t expect anything but you.</span>
                   </p>
                 </div>
               </div>

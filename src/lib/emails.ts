@@ -217,9 +217,9 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       p(`<strong>Bring photo ID.</strong> Over-18s only. ID is checked on the door, and the name on your booking is the name on the list.`) +
       accessHtml +
       h2("What's on") +
-      p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br>DJ Ti Balo. House, disco and Afro beats.`) +
-      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br>Get into creativity. Grillz in the making. Alice’s new magazine. Tooth gems. I Ching readings.`) +
-      p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br>Find your people. Dance, talk, watch, listen, play, drink, be happy.`) +
+      p(`<strong style="color:${C.acid}">01 / MUSIC</strong><br><strong>Get your groove on.</strong> DJ Ti Balo brings an eclectic mix of house, disco and Afrobass. A high-energy London DJ, mixing sounds from all over the world.`) +
+      p(`<strong style="color:${C.acid}">02 / CULTURE</strong><br><strong>Refresh your outlook.</strong> Get the lowdown on Alice <span style="white-space:nowrap">Streames-Smith’s</span> confronting new magazine, <strong style="white-space:nowrap">&#45;&#45;Y</strong>. Accessorise your smile with WBB Grillz. And get an I Ching reading from our resident sage, Charlie Castillio.`) +
+      p(`<strong style="color:${C.acid}">03 / COMPANY</strong><br><strong>Find your people.</strong> Dance, talk, watch, listen, play, drink, be happy. We don’t expect anything but you.`) +
       p(esc(EVENT.dress), true) +
       invitesHtml +
       h2("Can't make it?") +
@@ -243,9 +243,9 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     "Bring photo ID. Over-18s only. ID is checked on the door.",
     accessText,
     "WHAT'S ON",
-    "01 / MUSIC: DJ Ti Balo. House, disco and Afro beats.",
-    "02 / CULTURE: Get into creativity. Grillz in the making. Alice’s new magazine. Tooth gems. I Ching readings.",
-    "03 / COMPANY: Find your people. Dance, talk, watch, listen, play, drink, be happy.",
+    "01 / MUSIC: Get your groove on. DJ Ti Balo brings an eclectic mix of house, disco and Afrobass. A high-energy London DJ, mixing sounds from all over the world.",
+    "02 / CULTURE: Refresh your outlook. Get the lowdown on Alice Streames-Smith’s confronting new magazine, --Y. Accessorise your smile with WBB Grillz. And get an I Ching reading from our resident sage, Charlie Castillio.",
+    "03 / COMPANY: Find your people. Dance, talk, watch, listen, play, drink, be happy. We don’t expect anything but you.",
     EVENT.dress,
     invitesText,
     "CAN'T MAKE IT?",
@@ -293,7 +293,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
       h1("It&rsquo;s<br>yours.") +
       p(`Good news travels, ${esc(name)}. We're holding a place for you at Emerge.`) +
       detailsBlock([
-        `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="${F(800,22,1.15,HEAD)};letter-spacing:-.02em">${esc(deadline)}</strong><br>From ${PRICE_FROM}. You choose what you pay.`,
+        `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="${F(800,22,1.15,HEAD)};letter-spacing:-.02em">${esc(deadline)}</strong><br>Flexibly priced, from ${PRICE_FROM}`,
         ...eventRows(true),
       ]) +
       button(url, "Pay and confirm my place") +
@@ -304,7 +304,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
     `${name}, we're holding a place for you at Emerge.`,
     "",
     `Pay by: ${deadline}`,
-    `From ${PRICE_FROM}. You choose what you pay.`,
+    `Flexibly priced, from ${PRICE_FROM}`,
     `Pay and confirm: ${url}`,
     "",
     eventText(true),
