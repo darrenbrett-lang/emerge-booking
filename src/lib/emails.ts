@@ -6,6 +6,7 @@
 
 import { CONTROLLER, EVENT, firstName, formatLondon } from "./event";
 import { formatPlace } from "./format-place";
+import { googleCalendarUrl, icsUrl } from "./calendar";
 
 export type EmailKind =
   | "confirmation"
@@ -32,41 +33,63 @@ const C = {
 const HEAD = "'Unbounded','Arial Black','Helvetica Neue',Arial,sans-serif";
 const BODY = "'Work Sans','Helvetica Neue',Arial,sans-serif";
 
+// Longhand font styles: Gmail drops some shorthand. Sizes are set for a phone
+// first (Darren, 8 Nov 2026: an Android reader found the copy too small).
+const F = (weight: number, size: number, lh: number, family: string, italic = false) =>
+  `font-family:${family};font-size:${size}px;line-height:${lh};font-weight:${weight}${italic ? ";font-style:italic" : ""}`;
+
 const esc = (s: unknown) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 // ------------------------------------------------------------ building blocks
 
 const eyebrow = (t: string) =>
-  `<p style="margin:0 0 14px;font:700 11px/1.4 ${BODY};letter-spacing:.16em;text-transform:uppercase;color:${C.acid}">${esc(t)}</p>`;
+  `<p style="margin:0 0 14px;${F(700,12,1.4,BODY)};letter-spacing:.16em;text-transform:uppercase;color:${C.acid}">${esc(t)}</p>`;
 
 const h1 = (t: string) =>
-  `<h1 style="margin:0 0 22px;font:900 34px/1.02 ${HEAD};letter-spacing:-.04em;text-transform:uppercase;color:${C.ivory}">${t}</h1>`;
+  `<h1 style="margin:0 0 22px;${F(900,34,1.02,HEAD)};letter-spacing:-.04em;text-transform:uppercase;color:${C.ivory}">${t}</h1>`;
 
 const h2 = (t: string) =>
-  `<h2 style="margin:34px 0 12px;font:800 20px/1.15 ${HEAD};letter-spacing:-.03em;color:${C.pink}">${esc(t)}</h2>`;
+  `<h2 style="margin:34px 0 12px;${F(800,22,1.15,HEAD)};letter-spacing:-.03em;color:${C.pink}">${esc(t)}</h2>`;
 
 const p = (t: string, muted = false) =>
-  `<p style="margin:0 0 14px;font:400 16px/1.55 ${BODY};color:${muted ? C.muted : C.ivory}">${t}</p>`;
+  `<p style="margin:0 0 14px;${F(400,17,1.55,BODY)};color:${muted ? C.muted : C.ivory}">${t}</p>`;
 
 const button = (href: string, label: string) => `
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:24px 0 8px">
   <tr><td bgcolor="${C.acid}" style="background:${C.acid}">
-    <a href="${esc(href)}" style="display:block;padding:18px 20px;font:800 15px/1.2 ${HEAD};text-transform:uppercase;letter-spacing:-.01em;color:${C.night};text-decoration:none">${esc(label)} &#8599;</a>
+    <a href="${esc(href)}" style="display:block;padding:18px 20px;${F(800,16,1.2,HEAD)};text-transform:uppercase;letter-spacing:-.01em;color:${C.night};text-decoration:none">${esc(label)} &#8599;&#xFE0E;</a>
   </td></tr>
 </table>`;
 
 const detailsBlock = (rows: string[]) => `
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:22px 0">
   <tr><td bgcolor="${C.pink}" style="background:${C.pink};padding:22px 22px 8px">
-    ${rows.map((r) => `<p style="margin:0 0 14px;font:500 15px/1.45 ${BODY};color:${C.night}">${r}</p>`).join("")}
+    ${rows.map((r) => `<p style="margin:0 0 14px;${F(500,17,1.45,BODY)};color:${C.night}">${r}</p>`).join("")}
   </td></tr>
 </table>`;
+
+// Two calendar links, one row each so a thumb can hit them. Google for Android
+// and Gmail; the .ics for Apple Calendar and Outlook.
+const calendarLinks = (site: string) => {
+  const row = (href: string, label: string) => `
+<tr><td style="border:2px solid ${C.ivory};padding:0">
+  <a href="${esc(href)}" style="display:block;padding:15px 18px;${F(700, 17, 1.3, BODY)};color:${C.ivory};text-decoration:none">${esc(label)} &#8599;&#xFE0E;</a>
+</td></tr>
+<tr><td style="height:10px;line-height:10px;font-size:0">&nbsp;</td></tr>`;
+  return `
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 18px">
+  ${row(googleCalendarUrl(site), "Add to Google Calendar")}
+  ${row(icsUrl(site), "Add to Apple or Outlook")}
+</table>`;
+};
+const calendarText = (site: string) =>
+  `Add to Google Calendar: ${googleCalendarUrl(site)}\nAdd to Apple or Outlook calendar: ${icsUrl(site)}`;
 
 // secret: for people without a place yet, the town and a note, not the street.
 function eventRows(secret = false) {
   return [
-    `<strong style="font:800 17px/1.2 ${HEAD};letter-spacing:-.02em">${esc(EVENT.name)}</strong>`,
+    `<strong style="${F(800,19,1.2,HEAD)};letter-spacing:-.02em">${esc(EVENT.name)}</strong>`,
     `${esc(EVENT.dateLong)}<br>${esc(EVENT.start)} to ${esc(EVENT.end)}`,
     secret
       ? `${esc(EVENT.venue)}<br>${esc(EVENT.town)}<br>${esc(EVENT.addressNote)}<br><em style="font-weight:700">${esc(EVENT.venueLine)}</em>`
@@ -89,34 +112,36 @@ function layout(ctx: Ctx, preheader: string, inner: string) {
     : "";
   return `<!doctype html>
 <html lang="en-GB"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="x-apple-disable-message-reformatting">
 <meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark">
 <title>Emerge</title>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   body{margin:0;padding:0;background:${C.night}}
   a{color:${C.pink}}
-  @media (max-width:620px){ .shell{width:100%!important} .pad{padding:28px 20px!important} h1{font-size:30px!important} }
+  @media (max-width:620px){ .pad{padding-left:20px!important;padding-right:20px!important} h1{font-size:31px!important} }
 </style>
 </head>
-<body style="margin:0;padding:0;background:${C.night}" bgcolor="${C.night}">
+<body style="margin:0;padding:0;background:${C.night};-webkit-text-size-adjust:100%;text-size-adjust:100%" bgcolor="${C.night}">
 <div style="display:none;max-height:0;overflow:hidden;opacity:0">${esc(preheader)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${C.night}" style="background:${C.night}">
 <tr><td align="center" style="padding:0">
-  <table role="presentation" class="shell" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px">
+  <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+  <table role="presentation" class="shell" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;margin:0 auto">
     <tr><td class="pad" style="padding:36px 32px 8px">
       <img src="${esc(ctx.site)}/images/wordmark-email.png" width="220" alt="Emerge" style="display:block;width:220px;max-width:70%;height:auto;border:0">
-      <p style="margin:6px 0 0;font:italic 700 15px/1.3 ${BODY};color:${C.ivory}">A night that stays with you.</p>
+      <p style="margin:6px 0 0;${F(700,17,1.3,BODY,true)};color:${C.ivory}">A night that stays with you.</p>
     </td></tr>
     <tr><td class="pad" style="padding:30px 32px 10px">${inner}</td></tr>
     <tr><td class="pad" style="padding:26px 32px 40px;border-top:1px solid ${C.rule}">
-      <p style="margin:0;font:400 12px/1.6 ${BODY};color:${C.muted}">
+      <p style="margin:0;${F(400,14,1.6,BODY)};color:${C.muted}">
         Emerge. A night that stays with you.<br>
         Bookings are run by ${esc(CONTROLLER.name)}. Questions: reply to this email.<br>
         <a href="${esc(ctx.site)}/privacy" style="color:${C.muted}">Privacy notice</a>${unsub}
       </p>
     </td></tr>
   </table>
+  <!--[if mso]></td></tr></table><![endif]-->
 </td></tr>
 </table>
 </body></html>`;
@@ -157,8 +182,8 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
           (u, i) => `
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top:1px solid ${C.rule}">
   <tr><td style="padding:14px 0">
-    <p style="margin:0 0 4px;font:700 13px/1.4 ${BODY};color:${C.ivory}">Invitation ${i + 1} of 3</p>
-    <a href="${esc(u)}" style="font:400 14px/1.5 ${BODY};color:${C.pink};word-break:break-all">${esc(u)}</a>
+    <p style="margin:0 0 4px;${F(700,15,1.4,BODY)};color:${C.ivory}">Invitation ${i + 1} of 3</p>
+    <a href="${esc(u)}" style="${F(400,16,1.5,BODY)};color:${C.pink};word-break:break-all">${esc(u)}</a>
   </td></tr>
 </table>`,
         )
@@ -182,11 +207,12 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       p(lead) +
       detailsBlock([
         ...(typeof pl.place === "number"
-          ? [`<strong style="font:800 44px/1 ${HEAD};letter-spacing:-.04em">${esc(formatPlace(pl.place))}</strong><br><span style="font:700 11px/1.4 ${BODY};letter-spacing:.14em;text-transform:uppercase">of ${EVENT.capacity}</span>`]
+          ? [`<strong style="${F(800,44,1,HEAD)};letter-spacing:-.04em">${esc(formatPlace(pl.place))}</strong><br><span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">of ${EVENT.capacity}</span>`]
           : []),
-        `<span style="font:700 11px/1.4 ${BODY};letter-spacing:.14em;text-transform:uppercase">Booking reference</span><br><strong style="font:800 26px/1.1 ${HEAD};letter-spacing:-.02em">${esc(ref)}</strong><br>${esc(name)}`,
+        `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Booking reference</span><br><strong style="${F(800,26,1.1,HEAD)};letter-spacing:-.02em">${esc(ref)}</strong><br>${esc(name)}`,
         ...eventRows(),
       ]) +
+      calendarLinks(ctx.site) +
       p(`<strong>Bring photo ID.</strong> Over-18s only. ID is checked on the door, and the name on your booking is the name on the list.`) +
       accessHtml +
       h2("What's on") +
@@ -211,6 +237,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     `Name: ${name}`,
     "",
     eventText(),
+    calendarText(ctx.site),
     "",
     "Bring photo ID. Over-18s only. ID is checked on the door.",
     accessText,
@@ -265,7 +292,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
       h1("It&rsquo;s<br>yours.") +
       p(`Good news travels, ${esc(name)}. We're holding a place for you at Emerge.`) +
       detailsBlock([
-        `<span style="font:700 11px/1.4 ${BODY};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="font:800 22px/1.15 ${HEAD};letter-spacing:-.02em">${esc(deadline)}</strong><br>${esc(EVENT.priceLabel)} per person`,
+        `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="${F(800,22,1.15,HEAD)};letter-spacing:-.02em">${esc(deadline)}</strong><br>${esc(EVENT.priceLabel)} per person`,
         ...eventRows(true),
       ]) +
       button(url, "Pay and confirm my place") +
@@ -362,13 +389,15 @@ function transferLapsed(pl: P, ctx: Ctx): Rendered {
     eyebrow("Still yours") +
       h1("Your place<br>stands.") +
       p(`${esc(name)}, ${esc(to)} didn't take your place before transfers closed, so booking ${esc(pl.reference)} is still yours.`) +
-      detailsBlock(eventRows()),
+      detailsBlock(eventRows()) +
+      calendarLinks(ctx.site),
   );
   const text = [
     "STILL YOURS",
     `${name}, ${to} didn't take your place before transfers closed, so booking ${pl.reference} is still yours.`,
     "",
     eventText(),
+    calendarText(ctx.site),
     textFooter(ctx),
   ].join("\n");
   return { subject: "Your Emerge place is still yours", html, text };
