@@ -5,8 +5,8 @@ export const metadata = { title: "Emerge · Organisers" };
 
 // Sign in by emailed link. Only addresses in `organisers` are sent one, and
 // the reply is the same either way, so the page does not reveal who is.
-export default async function Login({ searchParams }: { searchParams: Promise<{ sent?: string }> }) {
-  const { sent } = await searchParams;
+export default async function Login({ searchParams }: { searchParams: Promise<{ sent?: string; expired?: string }> }) {
+  const { sent, expired } = await searchParams;
 
   async function send(form: FormData) {
     "use server";
@@ -29,6 +29,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
         <p>If that email belongs to an organiser, a sign-in link is on its way. It works once, for an hour.</p>
       ) : (
         <form action={send}>
+          {expired && <p>That link has expired or was already used. Ask for a new one below.</p>}
           <p className="muted">Darren and Suze only. We’ll email you a sign-in link.</p>
           <p>
             <label htmlFor="email">Email</label>
