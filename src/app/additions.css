@@ -288,3 +288,10 @@ a:not(.button):active,summary:active{opacity:.7}
 .invite-copy .welcome-note{margin:-6px 0 22px;color:var(--pink);font-weight:700;font-size:clamp(16px,1.35vw,18px);line-height:1.45;max-width:470px;text-wrap:balance}
 /* A long first name wraps "… thought you’d like it here." into two even lines. */
 .p1-invitation{text-wrap:balance}
+
+/* "Get in before the list closes." is a call to action, not a footnote
+   (Darren, 8 Nov 2026): every state of the line wears the tilted electric
+   sticker, a size up. Ivory on electric is 5.2:1; the night it had was 2.7. */
+.rsvp-section .urgency.last-place{color:var(--ivory);font-size:clamp(20px,5.4vw,27px);padding:16px 18px;margin:36px 7px 14px!important}
+/* The sender's name in pink (Darren, 8 Nov 2026), as on the share card. */
+.p1-invitation .p1-inviter{color:var(--pink)}

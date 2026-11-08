@@ -48,7 +48,15 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <p>A night that stays with you.</p>
             </div>
             <div className="p1-copy">
-              <p className="p1-invitation">{inviter ? `${inviter} thought you’d like it here.` : "You’re invited"}</p>
+              <p className="p1-invitation">
+                {inviter ? (
+                  <>
+                    <span className="p1-inviter">{inviter}</span> thought you’d like it here.
+                  </>
+                ) : (
+                  "You’re invited"
+                )}
+              </p>
               <h1 id="campaign-heading">
                 <span className="ln"><span className="ln-i">Be there for</span></span>
                 <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>

@@ -207,7 +207,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
           </p>
         </details>
       </div>
-      <p className={`urgency${count != null || waitlist ? " last-place" : ""}`} id="rsvp-urgency">
+      <p className="urgency last-place" id="rsvp-urgency">
         {urgency}
       </p>
       <div className="toast" role="status" aria-live="polite" hidden={!toast}>
