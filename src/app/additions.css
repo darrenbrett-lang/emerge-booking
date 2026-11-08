@@ -248,3 +248,7 @@ h1,h2,h3,.ln-i{text-wrap:balance}
 
 /* On a phone the venue takes the header's second line (Darren, 8 Nov). */
 @media(max-width:760px){.p1-meta .p1-meta-dot{display:none}.p1-meta .p1-meta-venue{display:block}}
+
+/* The footer kept 110px at the bottom to clear the sticky bar, but the bar
+   hides before the footer arrives (Darren, 8 Nov 2026). */
+.footer,.wrap>.footer{padding-bottom:calc(40px + env(safe-area-inset-bottom))}

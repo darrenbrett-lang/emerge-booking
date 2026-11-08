@@ -17,7 +17,8 @@ export function Sticky() {
       update();
     });
     const b = new IntersectionObserver(([e]) => {
-      atForm = e.isIntersecting;
+      // at the form, or past it into the footer: the bar stays away
+      atForm = e.isIntersecting || e.boundingClientRect.top < 0;
       update();
     });
     a.observe(cta);
