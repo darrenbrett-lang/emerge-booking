@@ -7,6 +7,7 @@
 import { CONTROLLER, EVENT, firstName, formatLondon } from "./event";
 import { formatPlace } from "./format-place";
 import { googleCalendarUrl, icsUrl } from "./calendar";
+import { PRICE_FROM } from "./price";
 
 export type EmailKind =
   | "confirmation"
@@ -292,7 +293,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
       h1("It&rsquo;s<br>yours.") +
       p(`Good news travels, ${esc(name)}. We're holding a place for you at Emerge.`) +
       detailsBlock([
-        `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="${F(800,22,1.15,HEAD)};letter-spacing:-.02em">${esc(deadline)}</strong><br>${esc(EVENT.priceLabel)} per person`,
+        `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Pay by</span><br><strong style="${F(800,22,1.15,HEAD)};letter-spacing:-.02em">${esc(deadline)}</strong><br>From ${PRICE_FROM}. You choose what you pay.`,
         ...eventRows(true),
       ]) +
       button(url, "Pay and confirm my place") +
@@ -303,7 +304,7 @@ function waitlistOffer(pl: P, ctx: Ctx): Rendered {
     `${name}, we're holding a place for you at Emerge.`,
     "",
     `Pay by: ${deadline}`,
-    `${EVENT.priceLabel} per person`,
+    `From ${PRICE_FROM}. You choose what you pay.`,
     `Pay and confirm: ${url}`,
     "",
     eventText(true),

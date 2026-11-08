@@ -3,12 +3,21 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { EVENT } from "@/lib/event";
-import { TicketMark } from "./TicketMark";
+import { Ticket } from "./Ticket";
+import { formatPence } from "@/lib/price";
 import { formatPlace } from "@/lib/format-place";
 import { ShareSlots } from "./ShareSlots";
 import { StateShell } from "./StateShell";
 
-type Booking = { first: string; email: string; reference: string; place: number | null; passToken: string | null; invites: string[] };
+type Booking = {
+  first: string;
+  email: string;
+  reference: string;
+  amountPence: number | null;
+  place: number | null;
+  passToken: string | null;
+  invites: string[];
+};
 
 export function Booked({ sessionId, booking }: { sessionId: string; booking: Booking | null }) {
   const router = useRouter();
@@ -72,19 +81,10 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
       )}
       <p>Glad you’re coming, {booking.first}.</p>
       <p className="small muted">Your confirmation is on its way to {booking.email}.</p>
-      <div className="event-details">
-        <TicketMark dark />
-        <p>{EVENT.dateLong} / {EVENT.start}</p>
-        <p>
-          {EVENT.venue}
-          <br />
-          {EVENT.addressLines[0]}
-          <br />
-          {EVENT.addressLines[1]}
-        </p>
-      </div>
+      <Ticket dark address="full" />
       <p className="small payment-receipt">
-        Paid / {EVENT.priceLabel}.00 / Booking reference {booking.reference}
+        {booking.amountPence != null ? `Paid / ${formatPence(booking.amountPence)} / ` : ""}Booking reference{" "}
+        {booking.reference}
       </p>
       {booking.invites.length > 0 && (
         <>

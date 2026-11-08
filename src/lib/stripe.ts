@@ -14,7 +14,9 @@ type Held = { hold_id: string; email: string; stripe_expires_at: string; price_p
 
 // Opens Stripe hosted Checkout for a hold. The idempotency key is the hold,
 // so a retried request returns the same session rather than a second one.
-export async function createCheckout(h: Held, cancelPath: string) {
+// The amount is the guest's choice, already checked by parsePricePence; the
+// event row's price_pence is only the default.
+export async function createCheckout(h: Held, cancelPath: string, pricePence: number) {
   const site = env.siteUrl();
   const expiresAt = Math.floor(new Date(h.stripe_expires_at).getTime() / 1000);
   try {
@@ -33,9 +35,9 @@ export async function createCheckout(h: Held, cancelPath: string) {
             quantity: 1,
             price_data: {
               currency: "gbp",
-              unit_amount: h.price_pence,
+              unit_amount: pricePence,
               product_data: {
-                name: `${EVENT.name}, ${EVENT.dateShort}`,
+                name: `Emerge, Maidenhead, ${EVENT.dateShort}`,
                 description: `One place. ${EVENT.start} to ${EVENT.end}, ${EVENT.venue}. Over-18s only.`,
               },
             },

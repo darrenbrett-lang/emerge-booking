@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { PRICE, parsePricePence } from "@/lib/price";
+import { PricePicker } from "./PricePicker";
 
 type Avail = { remaining: number | null; full: boolean; phase: string };
 
@@ -10,6 +12,7 @@ const MESSAGES: Record<string, string> = {
   invalid_name: "We’re gonna need that name!",
   invalid_email: "Can we have that email cuz?",
   age_required: "Tick the box to confirm you’re 18 or over.",
+  invalid_price: `Choose a whole-pound amount from £${PRICE.minPounds} to £${PRICE.maxPounds}.`,
   already_booked: "You’re already on the list with that email. Your confirmation email has everything you need.",
   has_offer: "We’re holding a place for you. Use the link in your offer email to pay for it.",
   already_waiting: "You’re already on the waiting list. We’ll email you if a place opens up.",
@@ -25,6 +28,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
   const [toast, setToast] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
 
   const closed = avail.phase !== "open";
   const waitlist = !closed && avail.full;
@@ -80,6 +84,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
     const email = String(form.get("email") ?? "").trim();
     if (!name) return fail("invalid_name", nameRef.current);
     if (!email || !emailRef.current?.validity.valid) return fail("invalid_email", emailRef.current);
+    if (!waitlist && parsePricePence(form.get("price")) === null) return fail("invalid_price", priceRef.current);
     if (!form.get("age")) return fail("age_required");
 
     setError("");
@@ -90,6 +95,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
       age: true,
       marketing: form.get("marketing") === "on",
       invite: inviteToken,
+      price: waitlist ? undefined : String(form.get("price") ?? ""),
       website: form.get("website"),
     };
     try {
@@ -178,6 +184,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
           placeholder="you@example.com"
         />
       </div>
+      {!waitlist && <PricePicker idPrefix="rsvp" ref={priceRef} />}
       <div className="honeypot" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />

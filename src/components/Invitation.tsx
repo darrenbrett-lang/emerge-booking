@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { EVENT } from "@/lib/event";
-import { TicketMark } from "./TicketMark";
+import { Ticket } from "./Ticket";
+import { PRICE_FROM } from "@/lib/price";
 import type { Availability } from "@/lib/db";
 import { Footer } from "./Footer";
 import { Motion } from "./Motion";
@@ -39,9 +40,6 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             <img className="p1-portrait p1-star" src="/images/tooth-star-glow-1.webp" alt="" aria-hidden="true" />
             <header className="web-header">
               <span>27 Nov 2026 / Maidenhead</span>
-              <a href="#explore">
-                Explore the night <span aria-hidden="true">↓</span>
-              </a>
             </header>
             <div className="p1-brand">
               <img src="/images/wordmark.webp" alt="Emerge" />
@@ -71,7 +69,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
           <a className="button p1-banner" id="hero-cta" href="#rsvp">
             <span>Get me in!</span>
             <span className="p1-price">
-              Tickets {EVENT.priceLabel} <span aria-hidden="true">↗︎</span>
+              Tickets from {PRICE_FROM} <span aria-hidden="true">↗︎</span>
             </span>
           </a>
         </section>
@@ -196,20 +194,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i">A night worth</span></span>
                 <span className="ln"><span className="ln-i">going out for.</span></span>
               </h2>
-              <div className="event-details">
-                <TicketMark />
-                <p>{EVENT.dateLong} / {EVENT.start}</p>
-                <p>
-                  BEN&amp;JACK STUDIO
-                  <br />
-                  {EVENT.venueLine}
-                  <br />
-                  {EVENT.addressNote}
-                </p>
-                <p className="ticket-price">
-                  {EVENT.priceLabel} <span>per person</span>
-                </p>
-              </div>
+              <Ticket price />
             </div>
             <RsvpForm
               initial={{

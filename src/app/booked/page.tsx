@@ -17,7 +17,7 @@ export default async function BookedPage({ searchParams }: { searchParams: Promi
   const { data } = valid
     ? await db()
         .from("bookings")
-        .select("reference, pass_token, status, guest:guests(name, email), invitations!invitations_inviter_booking_id_fkey(slot, token)")
+        .select("reference, pass_token, status, amount_pence, guest:guests(name, email), invitations!invitations_inviter_booking_id_fkey(slot, token)")
         .eq("stripe_session_id", sessionId)
         .maybeSingle()
     : { data: null };
@@ -47,6 +47,7 @@ export default async function BookedPage({ searchParams }: { searchParams: Promi
               first: firstName(guest.name),
               email: guest.email,
               reference: data.reference,
+              amountPence: typeof data.amount_pence === "number" ? data.amount_pence : null,
               place,
               passToken: data.status === "confirmed" ? data.pass_token : null,
               invites,

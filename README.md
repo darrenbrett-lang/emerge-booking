@@ -164,7 +164,7 @@ Also before go-live:
 - Suze's sign-off on refunds and transfers.
 - Send every email to real Gmail, Outlook and Apple Mail accounts on a phone
   and a laptop (`/dev/emails/<kind>` locally; real sends in test mode).
-- Switch Stripe keys and the webhook secret to live, and run one real £15
+- Switch Stripe keys and the webhook secret to live, and run one real
   payment end to end.
 
 ## Decisions the spec left open

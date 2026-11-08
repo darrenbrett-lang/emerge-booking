@@ -1,6 +1,6 @@
 # Emerge Booking Site — Build Spec
 
-Version 1 · 7 November 2026 · Owner: Darren Brett
+Version 1 · 7 November 2026 · updated 8 November 2026 (flexible pricing) · Owner: Darren Brett
 
 > The spec as supplied, kept beside the code. Where the build makes a call
 > the spec leaves open, it is listed in README.md under "Decisions the spec
@@ -15,7 +15,7 @@ Turn the existing Emerge invitation demo into a live booking site at www.emergeu
 - Event: Emerge · Maidenhead
 - Date: Friday 27 November 2026, 8:30 pm to 12:30 am
 - Venue: BEN&JACK STUDIO, Unit B, Reform Road, Maidenhead, Berkshire SL6 8BT
-- Price: £15 per person (overrides the £20 shown in the demo copy)
+- Price: flexibly priced, from £10 (changed 8 November 2026 from a fixed £15). See section 4a.
 - Capacity: 100 places
 - Descriptor: Music, culture & meaningful connection
 - Over-18s only
@@ -31,7 +31,7 @@ Turn the existing Emerge invitation demo into a live booking site at www.emergeu
 
 1. One ticket per person. No group bookings.
 2. Open via main link. Anyone with the main link can book. The link is not publicly promoted.
-3. Invitations. Each confirmed guest gets exactly three personal invitation links. An invitation link opens a personalised page (e.g. "Sue's invited you"). Invitees still pay £15. Invitations do not reserve places or bypass capacity or the waiting list. The system records who invited whom.
+3. Invitations. Each confirmed guest gets exactly three personal invitation links. An invitation link opens a personalised page (e.g. "Sue's invited you"). Invitees choose and pay their own price, as in section 4a. Invitations do not reserve places or bypass capacity or the waiting list. The system records who invited whom.
 4. Age. Booking requires a tick box confirming the guest is 18 or over. ID is checked on the door.
 5. Capacity. Never more than 100 paid places plus active holds. Capacity check and hold creation happen in a single database transaction to prevent overselling.
 6. Checkout holds. Starting checkout holds a place for 30 minutes (matches Stripe Checkout minimum session length). Expired or abandoned holds release the place.
@@ -40,6 +40,17 @@ Turn the existing Emerge invitation demo into a live booking site at www.emergeu
 9. Waiting list. When full, guests can join the waiting list. When a place frees up, the next person automatically receives an offer email with the exact payment deadline. Offer window: 24 hours, reducing to 2 hours within the final 48 hours before sales close. Unused offers pass to the next person.
 10. Sales cutoff. New checkouts stop at 5:30 pm on 27 November. All sales and waiting list offers end at 6:00 pm on 27 November. No offer may be issued that cannot be used before 6:00 pm.
 11. Holding page. At 12:30 am on 28 November the site automatically switches to a holding page saying Emerge will be in touch when the next event is happening.
+
+## 4a. Flexible pricing (8 November 2026)
+
+1. The booking form offers £10, £15 and £20 as buttons, with £15 pre-selected, and an "Other" option for any whole-pound amount from £10 to £200. Everyone gets the same night, whatever they pay.
+2. The server checks the amount (whole pounds, £10 to £200) before it holds a place. A bad amount is refused with `invalid_price` and never reaches the database, so it never holds a place. The rules live in `src/lib/price.ts`, shared by the form and the server, and are tested in `tests/price.test.ts`.
+3. Stripe Checkout charges exactly the chosen amount. The booking records the amount Stripe reports as paid (`amount_total`), and the booked page shows it ("Paid / £20").
+4. Waiting list offers use the same choice: the offer page shows the same buttons and the server applies the same check before it opens checkout.
+5. The event row's `price_pence` (1500) is no longer charged; it stays as the default the database knows about. No database change was needed.
+6. If a guest already has an open checkout and starts again with a different amount, they are sent back to the open checkout at its original amount. Cancelling it (the back button on Stripe) frees the place at once, and they can choose again.
+7. Wording: the hero reads "Tickets from £10"; the ticket reads "Flexibly priced tickets." above "From £10"; the waiting list offer email reads "From £10. You choose what you pay."
+8. Transfers carry the amount the original guest paid. No refunds, whatever was paid.
 
 Transfers and refunds (confirmed): No refunds. Tickets can be transferred free of charge until 6:00 pm on 27 November:
 
