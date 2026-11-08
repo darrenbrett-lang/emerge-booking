@@ -102,7 +102,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               </span>
               <span className="venue-note">{EVENT.venueLine}</span>
             </div>
-            <a href="#rsvp">I’M COMING! ↗︎</a>
+            <a href="#rsvp">I’M COMING! <span aria-hidden="true">↗︎</span></a>
           </div>
         </section>
 
