@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ token: string }> }): Promise<Metadata> {
   const name = await inviterName((await params).token).catch(() => null);
-  const title = name ? `${name}’s invited you · Emerge` : "Emerge · You’ve been invited";
+  const title = name ? `${name} thought you’d like it here · Emerge` : "Emerge · You’ve been invited";
   return { title, openGraph: { title, description: "A night that stays with you. Friday 27 November, Maidenhead." } };
 }
 

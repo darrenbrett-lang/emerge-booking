@@ -282,3 +282,9 @@ summary{cursor:pointer}
 a:not(.button):active,summary:active{opacity:.7}
 .button:active,.share-row button:active{transform:translateY(1px)}
 @media(prefers-reduced-motion:reduce){a [aria-hidden="true"],button [aria-hidden="true"]{transition:none}}
+
+/* The welcome (brief, 8 Nov 2026): a quiet personal note under "Or bring
+   your people.", in the section's pink, a step below the body copy. */
+.invite-copy .welcome-note{margin:-6px 0 22px;color:var(--pink);font-weight:700;font-size:clamp(16px,1.35vw,18px);line-height:1.45;max-width:470px;text-wrap:balance}
+/* A long first name wraps "… thought you’d like it here." into two even lines. */
+.p1-invitation{text-wrap:balance}

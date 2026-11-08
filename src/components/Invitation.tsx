@@ -48,7 +48,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <p>A night that stays with you.</p>
             </div>
             <div className="p1-copy">
-              <p className="p1-invitation">{inviter ? `${inviter}’s invited you` : "You’re invited"}</p>
+              <p className="p1-invitation">{inviter ? `${inviter} thought you’d like it here.` : "You’re invited"}</p>
               <h1 id="campaign-heading">
                 <span className="ln"><span className="ln-i">Be there for</span></span>
                 <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>
@@ -80,6 +80,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               <br />
               Or bring your people.
             </p>
+            <p className="welcome-note">Coming on your own? We’ll be there for a warm welcome.</p>
             <p className="invite-body">
               Leave with a new favourite track, a new idea or someone you’re glad you met.
             </p>
@@ -100,11 +101,10 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 STUDIO.
               </p>
               <span>
-                {EVENT.town}
+                {EVENT.venueLine}
                 <br />
                 {EVENT.addressNote}
               </span>
-              <span className="venue-note">{EVENT.venueLine}</span>
             </div>
             <a href="#rsvp">I’M COMING! <span aria-hidden="true">↗︎</span></a>
           </div>
@@ -194,11 +194,10 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <p>
                   BEN&amp;JACK STUDIO
                   <br />
-                  {EVENT.town}
+                  {EVENT.venueLine}
                   <br />
                   {EVENT.addressNote}
                 </p>
-                <p className="venue-line">{EVENT.venueLine}</p>
                 <p className="ticket-price">
                   {EVENT.priceLabel} <span>per person</span>
                 </p>

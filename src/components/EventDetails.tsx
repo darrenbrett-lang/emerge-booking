@@ -9,11 +9,10 @@ export function EventDetails({ price = false }: { price?: boolean }) {
       <p>
         {EVENT.venue}
         <br />
-        {EVENT.town}
+        {EVENT.venueLine}
         <br />
         {EVENT.addressNote}
       </p>
-      <p className="venue-line">{EVENT.venueLine}</p>
       {price && (
         <p className="ticket-price">
           {EVENT.priceLabel} <span>per person</span>

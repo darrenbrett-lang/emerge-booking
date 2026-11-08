@@ -13,7 +13,7 @@ export const EVENT = {
   // pages and emails show the town and this line instead of the street.
   town: "Maidenhead, Berkshire",
   addressNote: "The address comes with your ticket.",
-  venueLine: "The coolest space in town, and its best kept secret.",
+  venueLine: "A studio tucked away in Maidenhead.",
   mapUrl:
     "https://www.google.com/maps/search/?api=1&query=BEN%26JACK%20STUDIO%2C%20Unit%20B%2C%20Reform%20Road%2C%20Maidenhead%20SL6%208BT",
   capacity: 100,

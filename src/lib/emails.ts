@@ -92,7 +92,7 @@ function eventRows(secret = false) {
     `<strong style="${F(800,19,1.2,HEAD)};letter-spacing:-.02em">${esc(EVENT.name)}</strong>`,
     `${esc(EVENT.dateLong)}<br>${esc(EVENT.start)} to ${esc(EVENT.end)}`,
     secret
-      ? `${esc(EVENT.venue)}<br>${esc(EVENT.town)}<br>${esc(EVENT.addressNote)}<br><em style="font-weight:700">${esc(EVENT.venueLine)}</em>`
+      ? `${esc(EVENT.venue)}<br>${esc(EVENT.venueLine)}<br>${esc(EVENT.addressNote)}`
       : `${esc(EVENT.venue)}<br>${EVENT.addressLines.map(esc).join("<br>")}<br><a href="${esc(EVENT.mapUrl)}" style="color:${C.night}">Open in maps</a>`,
   ];
 }
@@ -102,7 +102,7 @@ function eventText(secret = false) {
     EVENT.name,
     `${EVENT.dateLong}, ${EVENT.start} to ${EVENT.end}`,
     EVENT.venue,
-    ...(secret ? [EVENT.town, EVENT.addressNote, EVENT.venueLine] : [...EVENT.addressLines, `Map: ${EVENT.mapUrl}`]),
+    ...(secret ? [EVENT.venueLine, EVENT.addressNote] : [...EVENT.addressLines, `Map: ${EVENT.mapUrl}`]),
   ].join("\n");
 }
 
@@ -175,8 +175,8 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
   const accessText = EVENT.access ? `\nGETTING IN\n${EVENT.access.join("\n")}\n` : "";
 
   const invitesHtml = inviteUrls.length
-    ? h2("Good company travels.") +
-      p("You can invite three people you think would enjoy the night. Each link is for one person. They book and pay for their own place, so send it soon. When the list is full, it closes.") +
+    ? h2("Know someone who’d feel at home here?") +
+      p("You’ve got three invitations to pass on. Each link is for one person. They book and pay for their own place, so send it soon. When the list is full, it closes.") +
       inviteUrls
         .map(
           (u, i) => `
@@ -190,7 +190,7 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
         .join("")
     : "";
   const invitesText = inviteUrls.length
-    ? `\nGOOD COMPANY TRAVELS.\nYou can invite three people you think would enjoy the night. Each link is for one person. They book and pay for their own place.\n${inviteUrls
+    ? `\nKNOW SOMEONE WHO’D FEEL AT HOME HERE?\nYou’ve got three invitations to pass on. Each link is for one person. They book and pay for their own place.\n${inviteUrls
         .map((u, i) => `Invitation ${i + 1} of 3: ${u}`)
         .join("\n")}\n`
     : "";

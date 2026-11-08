@@ -88,8 +88,8 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
       </p>
       {booking.invites.length > 0 && (
         <>
-          <h2>Good company travels.</h2>
-          <p>You can invite three people you think would enjoy the night. Choose your people and pass it on.</p>
+          <h2>Know someone who’d feel at home here?</h2>
+          <p>You’ve got three invitations to pass on.</p>
           <ShareSlots tokens={booking.invites} from={booking.first} />
           <p className="urgency">They’ll need to RSVP too. Send it soon. When the list is full, it closes.</p>
         </>
