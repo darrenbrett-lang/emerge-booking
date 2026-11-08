@@ -377,3 +377,6 @@ a:not(.button):active,summary:active{opacity:.7}
 .prog-line{display:block;text-wrap:balance}
 /* Nothing sideways: the stamp, scaled up before it lands, must never widen the page. */
 html,body{overflow-x:clip}
+
+/* P1 descriptor back (Darren, 8 Nov 2026): balanced, so no word sits alone. */
+.p1-copy .p1-descriptor{text-wrap:balance}

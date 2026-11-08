@@ -59,6 +59,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i">Be there for</span></span>
                 <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>
               </h1>
+              <p className="p1-descriptor">{EVENT.descriptor}</p>
               <p className="p1-meta">
                 Friday 27 Nov <span className="p1-slash" aria-hidden="true">/</span> {EVENT.start}{" "}
                 <span className="p1-slash p1-meta-dot" aria-hidden="true">/</span>{" "}
