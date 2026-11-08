@@ -2,6 +2,7 @@ import "server-only";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import sharp from "sharp";
 import { EVENT } from "./event";
 
 // The share card (Darren, 8 Nov 2026): what WhatsApp, iMessage and the rest
@@ -30,7 +31,7 @@ export async function shareCard(inviter: string | null) {
         ["invited", "#F5F1E8"],
       ];
 
-  return new ImageResponse(
+  const png = new ImageResponse(
     (
       <div style={{ display: "flex", width: "100%", height: "100%", background: "#171713", fontFamily: "Unbounded" }}>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1, padding: "56px 56px 52px" }}>
@@ -53,4 +54,10 @@ export async function shareCard(inviter: string | null) {
     ),
     { ...OG_SIZE, fonts: [{ name: "Unbounded", data: font, weight: 800, style: "normal" }] },
   );
+  // As a PNG the halftone photo makes the card about 800 KB, and WhatsApp
+  // drops previews that large. As a JPEG it is a fraction of that.
+  const jpg = await sharp(Buffer.from(await png.arrayBuffer())).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
+  return new Response(new Uint8Array(jpg), {
+    headers: { "content-type": "image/jpeg", "cache-control": "public, max-age=3600, s-maxage=3600" },
+  });
 }
