@@ -196,7 +196,7 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
       <p className="small muted">
         {waitlist
           ? "A waiting-list place doesn’t confirm entry. If a place opens up, we’ll email you a link to pay."
-          : "£15. No refunds, but you can pass your place on."}
+          : "No refunds, but you can pass your place on from your confirmation email if you need to."}
       </p>
       <div className="privacy muted">
         <details>
