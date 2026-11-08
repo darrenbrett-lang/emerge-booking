@@ -48,7 +48,7 @@ Turn the existing Emerge invitation demo into a live booking site at www.emergeu
 3. Stripe Checkout charges exactly the chosen amount. The booking records the amount Stripe reports as paid (`amount_total`), and the booked page shows it ("Paid / £20").
 4. Waiting list offers use the same choice: the offer page shows the same buttons and the server applies the same check before it opens checkout.
 5. The event row's `price_pence` (1500) is no longer charged; it stays as the default the database knows about. No database change was needed.
-6. If a guest already has an open checkout and starts again with a different amount, they are sent back to the open checkout at its original amount. Cancelling it (the back button on Stripe) frees the place at once, and they can choose again.
+6. If a guest already has an open checkout (a second click, or a Stripe tab closed without paying) and starts again at the same amount, they go back to it. At a different amount, the old checkout is closed and a new one opens at the amount chosen now. For a waiting list offer, the offer stays held throughout. (Fixed 8 November 2026: a guest who chose £20 was sent back to an earlier £15 checkout.)
 7. Wording: the hero reads "Tickets from £10"; the ticket reads "Flexibly priced tickets." above "From £10"; the waiting list offer email reads "Flexibly priced, from £10"
 8. Transfers carry the amount the original guest paid. No refunds, whatever was paid.
 

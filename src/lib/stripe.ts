@@ -62,6 +62,17 @@ export async function createCheckout(h: Held, cancelPath: string, pricePence: nu
   }
 }
 
+// The amount an open checkout will charge, or null if it is no longer open
+// (paid, expired, or unknown to Stripe).
+export async function openSessionAmount(sessionId: string): Promise<number | null> {
+  try {
+    const s = await stripe().checkout.sessions.retrieve(sessionId);
+    return s.status === "open" ? s.amount_total : null;
+  } catch {
+    return null;
+  }
+}
+
 // Expire at Stripe first, so the session can no longer be paid, then free
 // the place. If Stripe says it is already complete, the webhook books it.
 export async function abandonHold(holdId: string) {

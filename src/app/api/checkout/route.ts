@@ -1,6 +1,6 @@
 import { EVENT } from "@/lib/event";
 import { rpc } from "@/lib/db";
-import { createCheckout } from "@/lib/stripe";
+import { abandonHold, createCheckout, openSessionAmount } from "@/lib/stripe";
 import { parsePricePence } from "@/lib/price";
 import { bool, clientHash, json, readJson, str } from "@/lib/request";
 
@@ -15,17 +15,29 @@ export async function POST(req: Request) {
   const price = parsePricePence(body.price);
   if (price === null) return json({ result: "invalid_price" });
 
-  const r = await rpc("emerge_start_checkout", {
-    p_event: EVENT.id,
-    p_name: str(body.name, 100),
-    p_email: str(body.email),
-    p_age_confirmed: bool(body.age),
-    p_marketing: bool(body.marketing),
-    p_invite_token: str(body.invite, 100) || null,
-    p_client: clientHash(req),
-  });
+  const start = () =>
+    rpc("emerge_start_checkout", {
+      p_event: EVENT.id,
+      p_name: str(body.name, 100),
+      p_email: str(body.email),
+      p_age_confirmed: bool(body.age),
+      p_marketing: bool(body.marketing),
+      p_invite_token: str(body.invite, 100) || null,
+      p_client: clientHash(req),
+    });
 
-  if (r.result === "existing") return json({ result: "redirect", url: r.session_url });
+  let r = await start();
+  // Already has a checkout open (a second click, or a Stripe tab closed
+  // without paying). Same price: go back to it. A different price (Darren,
+  // 8 Nov 2026: chose £20, Stripe showed the earlier £15): close the old one
+  // and open a new one at the price chosen now.
+  if (r.result === "existing") {
+    const open = await openSessionAmount(String(r.session_id));
+    if (open === null || open === price) return json({ result: "redirect", url: r.session_url });
+    await abandonHold(String(r.hold_id));
+    r = await start();
+    if (r.result === "existing") return json({ result: "redirect", url: r.session_url });
+  }
   if (r.result !== "held") return json({ result: r.result });
 
   try {
