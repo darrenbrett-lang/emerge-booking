@@ -53,7 +53,6 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i">Be there for</span></span>
                 <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>
               </h1>
-              <p className="p1-descriptor">Music, culture &amp; meaningful connection.</p>
               <p className="p1-meta">
                 Friday 27 Nov <span aria-hidden="true">·</span> {EVENT.start}{" "}
                 <span aria-hidden="true">·</span> {EVENT.venue}, Maidenhead
@@ -70,17 +69,14 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
 
         <section className="invitation-intro wrap" id="explore">
           <div className="invite-copy">
-            <p className="eyebrow" id="sender-line">
-              {inviter ? `${inviter} thought you’d like it here.` : "Thought this might be your kind of night"}
-            </p>
             <h2 data-reveal>
               <span className="ln"><span className="ln-i">Make room</span></span>
               <span className="ln"><span className="ln-i">for what’s</span></span>
               <span className="ln"><span className="ln-i">been missing<span>.</span></span></span>
             </h2>
-            <p className="invite-body">Come as you are. Bring your people.</p>
+            <p className="invite-body">Come as you are, or bring your people.</p>
             <p className="invite-body">
-              Leave with a new favourite track, a new idea or someone you are glad you met.
+              Leave with a new favourite track, a new idea, someone you are glad you met; and more energy for what follows.
             </p>
             <a className="invite-link" href="#rsvp">
               I’m coming! <span aria-hidden="true">↗</span>
@@ -146,7 +142,6 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                   <span className="programme-number">01 / MUSIC</span>
                   <h3>DJ Ti Balo</h3>
                   <p>House, disco and Afro beats.</p>
-                  <p>Plenty of vibe worth coming and staying for.</p>
                 </div>
                 <div>
                   <span className="programme-number">02 / CULTURE</span>
@@ -205,7 +200,6 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <p className="ticket-price">
                   {EVENT.priceLabel} <span>per person</span>
                 </p>
-                <p>Access details will follow in your confirmation email.</p>
               </div>
             </div>
             <RsvpForm

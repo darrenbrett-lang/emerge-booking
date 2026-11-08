@@ -109,7 +109,7 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
 
 /* The two lines under "Make room…" take acid, the third brand colour beside
    ivory and pink (Darren, 7 Nov 2026). Electric blue fails contrast on night. */
-.invite-copy .invite-body{color:var(--acid)}
+.invite-copy .invite-body{color:var(--acid);text-wrap:balance}
 
 /* Motion (Darren, 7 Nov 2026). One curve, slow to settle, each move plays
    once. Load moves are CSS only; scroll moves wait for Motion.tsx to set

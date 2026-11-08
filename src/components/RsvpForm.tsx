@@ -196,11 +196,11 @@ export function RsvpForm({ initial, inviteToken }: { initial: Avail; inviteToken
       <p className="small muted">
         {waitlist
           ? "A waiting-list place doesn’t confirm entry. If a place opens up, we’ll email you a link to pay."
-          : "Next: pay securely with Stripe. £15 per person. No refunds, but you can pass your place on."}
+          : "£15. No refunds, but you can pass your place on."}
       </p>
       <div className="privacy muted">
         <details>
-          <summary>Your details</summary>
+          <summary>How we use your details</summary>
           <p>
             We use your name and email to manage your booking and send your confirmation. We only email you about
             future events if you tick the box. Read the <Link href="/privacy">privacy notice</Link>.
