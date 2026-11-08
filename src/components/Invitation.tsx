@@ -132,9 +132,9 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i"><span>Notice where it takes you.</span></span></span>
               </h2>
               <p>
-                <span className="thermal-line">Let the music move you.</span>
+                <span className="thermal-line">Be moved by music.</span>
                 <span className="thermal-line">Spend time with what someone’s made.</span>
-                <span className="thermal-line">Find something new in a stranger.</span>
+                <span className="thermal-line">Find something inspiring in a stranger.</span>
               </p>
             </div>
             <div className="experience-programme">
