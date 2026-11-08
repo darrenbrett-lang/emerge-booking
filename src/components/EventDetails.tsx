@@ -5,7 +5,7 @@ export function EventDetails({ price = false }: { price?: boolean }) {
   return (
     <div className="event-details">
       <TicketMark dark />
-      <p>{EVENT.dateLong} · {EVENT.start}</p>
+      <p>{EVENT.dateLong} / {EVENT.start}</p>
       <p>
         {EVENT.venue}
         <br />

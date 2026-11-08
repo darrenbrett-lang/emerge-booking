@@ -45,7 +45,7 @@ export async function shareCard(inviter: string | null) {
             ))}
           </div>
           <div style={{ display: "flex", color: "#EFFF00", fontSize: 24, letterSpacing: "-0.02em", textTransform: "uppercase" }}>
-            {`Fri 27 Nov · ${EVENT.start} · Maidenhead`}
+            {`Fri 27 Nov / ${EVENT.start} / Maidenhead`}
           </div>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}

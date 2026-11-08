@@ -54,8 +54,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>
               </h1>
               <p className="p1-meta">
-                Friday 27 Nov <span aria-hidden="true">·</span> {EVENT.start}{" "}
-                <span className="p1-meta-dot" aria-hidden="true">·</span>{" "}
+                Friday 27 Nov <span className="p1-slash" aria-hidden="true">/</span> {EVENT.start}{" "}
+                <span className="p1-slash p1-meta-dot" aria-hidden="true">/</span>{" "}
                 <span className="p1-meta-venue">{EVENT.venue}, Maidenhead</span>
               </p>
             </div>
@@ -88,7 +88,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             <p className="date-numerals">
               27<span>NOV</span>
             </p>
-            <p className="date-time">FRIDAY · 8:30 PM</p>
+            <p className="date-time">FRIDAY / 8:30 PM</p>
             <div className="venue-punch">
               <p>
                 BEN&amp;JACK
@@ -186,7 +186,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               </h2>
               <div className="event-details">
                 <TicketMark />
-                <p>{EVENT.dateLong} · {EVENT.start}</p>
+                <p>{EVENT.dateLong} / {EVENT.start}</p>
                 <p>
                   BEN&amp;JACK STUDIO
                   <br />

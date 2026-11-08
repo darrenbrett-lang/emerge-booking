@@ -74,7 +74,7 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
       <p className="small muted">Your confirmation is on its way to {booking.email}.</p>
       <div className="event-details">
         <TicketMark dark />
-        <p>{EVENT.dateLong} · {EVENT.start}</p>
+        <p>{EVENT.dateLong} / {EVENT.start}</p>
         <p>
           {EVENT.venue}
           <br />
@@ -84,7 +84,7 @@ export function Booked({ sessionId, booking }: { sessionId: string; booking: Boo
         </p>
       </div>
       <p className="small payment-receipt">
-        Paid · {EVENT.priceLabel}.00 · Booking reference {booking.reference}
+        Paid / {EVENT.priceLabel}.00 / Booking reference {booking.reference}
       </p>
       {booking.invites.length > 0 && (
         <>
