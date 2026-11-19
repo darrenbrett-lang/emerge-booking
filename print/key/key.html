@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Emerge key visual</title>
+<!-- The key visual for listings: the portrait with the star on her tooth,
+     the wordmark, the tagline and the headline. Laid out on a 1080 px tall
+     frame; ?r=43 gives the 4:3 version (1440 x 1080), otherwise square.
+     Render with: node print/key/render.mjs -->
+<style>
+@font-face{font-family:'Emerge Unbounded';src:url('../fonts/Unbounded-900.ttf') format('truetype');font-weight:900}
+@font-face{font-family:'Emerge Work';src:url('../fonts/WorkSans-700-italic.ttf') format('truetype');font-weight:700;font-style:italic}
+:root{--night:#171713;--ivory:#F5F1E8;--electric:#354BFF;--photo-x:38%}
+.r43{--photo-x:0%}
+*{box-sizing:border-box}
+html,body{margin:0;width:100vw;height:100vh;overflow:hidden;background:var(--night)}
+.frame{position:relative;isolation:isolate;width:100vw;height:100vh;overflow:hidden;color:var(--ivory)}
+.photo{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--photo-x) center}
+.photo.star{z-index:0}
+.frame:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#17171366,transparent 22%,transparent 58%,#171713b3 74%,#171713f0 86%,var(--night))}
+.brand{position:absolute;top:96px;left:50%;transform:translateX(-50%);width:880px}
+.r43 .brand{left:90px;transform:none}
+.brand img{display:block;width:100%;height:auto}
+.brand p{margin:-4px 6% 0 0;text-align:right;font-family:'Emerge Work',sans-serif;font-style:italic;font-weight:700;font-size:44px;letter-spacing:-.02em;white-space:nowrap}
+h1{position:absolute;z-index:1;left:90px;bottom:84px;margin:0;font-family:'Emerge Unbounded',sans-serif;font-weight:900;font-size:104px;line-height:1.02;letter-spacing:-.075em;text-transform:uppercase}
+:root:not(.r43) h1{font-size:94px}
+h1 span{display:block}
+h1 span+span{color:var(--electric)}
+</style>
+<script>if (location.search.includes("r=43")) document.documentElement.classList.add("r43");</script>
+</head>
+<body>
+<div class="frame">
+  <img class="photo" src="../flyer/portrait.jpg" alt="">
+  <img class="photo star" src="../flyer/star.png" alt="">
+  <div class="brand">
+    <img src="../flyer/wordmark.png" alt="Emerge">
+    <p>A night that stays with you.</p>
+  </div>
+  <h1><span>Be there for</span><span>the beginning</span></h1>
+</div>
+</body>
+</html>
