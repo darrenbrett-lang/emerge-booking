@@ -399,3 +399,11 @@ html,body{overflow-x:clip}
   .programme-summary .ps-item{display:block}
   .programme-summary .p1-dot{display:none}
 }
+
+/* The programme summary on the P1, between the genres and the date. */
+.p1-copy .programme-summary{margin:0 0 min(18px,2svh);font-size:min(1.1vw,1.9svh)}
+@media(max-width:760px){.p1-copy .programme-summary{margin:0 0 min(14px,1.6svh);font-size:min(3.2vw,1.55svh,12.5px);line-height:1.45}}
+@media (prefers-reduced-motion:no-preference){.p1-copy .programme-summary{animation:emerge-fade 1.1s var(--ease) 1s both}}
+/* The dots inside a summary line sit closer than the ones between items. */
+.programme-summary>span:last-child .p1-dot{margin:0 .3em}
+@media(max-width:760px){.programme-summary>span:last-child .p1-dot{display:inline}}

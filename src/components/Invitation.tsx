@@ -15,6 +15,27 @@ type Props = {
   inviteToken?: string | null;
 };
 
+// What else is on, as on the flyer (Darren, 19 Nov 2026). Used on the P1
+// under the genres and again at the top of the programme. On a phone each
+// item takes its own line, so the dot never hangs at a line end.
+function ProgrammeSummary() {
+  return (
+    <p className="programme-summary">
+      <span>
+        <span className="ps-item">
+          <span className="nowrap">{"--Y"}</span> Magazine launch
+        </span>
+        <span className="p1-dot" aria-hidden="true">·</span>
+        <span className="ps-item">Interactive experiences</span>
+      </span>
+      <span>
+        House party vibes: chill<span className="p1-dot" aria-hidden="true">·</span>dance
+        <span className="p1-dot" aria-hidden="true">·</span>game
+      </span>
+    </p>
+  );
+}
+
 // The approved demo page, section for section. Copy is the demo's, with the
 // spec's changes: £15, 02 / CULTURE, no demo strip or controls, no
 // "Concept photography" label, and live availability.
@@ -68,6 +89,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                   </span>
                 ))}
               </p>
+              <ProgrammeSummary />
               <p className="p1-meta">
                 Friday 27 Nov <span className="p1-slash" aria-hidden="true">/</span> {EVENT.start}{" "}
                 <span className="p1-slash p1-meta-dot" aria-hidden="true">/</span>{" "}
@@ -152,16 +174,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             </div>
             <div className="experience-programme">
               <p className="eyebrow">On the night</p>
-              <p className="programme-summary">
-                <span>
-                  <span className="ps-item">
-                    <span className="nowrap">{"--Y"}</span> Magazine launch
-                  </span>
-                  <span className="p1-dot" aria-hidden="true">·</span>
-                  <span className="ps-item">Interactive experiences</span>
-                </span>
-                <span>House party vibes; chill, dance, game</span>
-              </p>
+              <ProgrammeSummary />
               <div className="programme-grid">
                 <div>
                   <span className="programme-number">01 / MUSIC</span>
