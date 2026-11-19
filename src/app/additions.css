@@ -407,3 +407,6 @@ html,body{overflow-x:clip}
 /* The dots inside a summary line sit closer than the ones between items. */
 .programme-summary>span:last-child .p1-dot{margin:0 .3em}
 @media(max-width:760px){.programme-summary>span:last-child .p1-dot{display:inline}}
+
+/* The colon in "House party vibes: chill", in yellow as on the flyer (Darren, 19 Nov 2026). */
+.programme-summary .ps-colon{color:var(--acid)}

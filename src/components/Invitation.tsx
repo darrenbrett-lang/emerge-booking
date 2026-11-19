@@ -29,7 +29,7 @@ function ProgrammeSummary() {
         <span className="ps-item">Interactive experiences</span>
       </span>
       <span>
-        House party vibes: chill<span className="p1-dot" aria-hidden="true">·</span>dance
+        House party vibes<span className="ps-colon">:</span> chill<span className="p1-dot" aria-hidden="true">·</span>dance
         <span className="p1-dot" aria-hidden="true">·</span>game
       </span>
     </p>
@@ -198,7 +198,8 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                   <p>
                     Get the lowdown on Alice <span className="nowrap">Streames-Smith’s</span> confronting new magazine,{" "}
                     <strong className="mag-title">{"--Y"}</strong>. Accessorise your smile with WBB Grillz. And get an
-                    I Ching reading from our resident sage, Charlie Castillo.
+                    I Ching reading from our resident sage, Charlie Castillo. There will be PlayStation, table football,
+                    places to leave your mark and other moments for creative interaction.
                   </p>
                 </div>
                 <div>
