@@ -129,7 +129,7 @@ label.check,.rsvp-form label.check{display:flex;gap:14px;align-items:flex-start;
   .p1-invitation{animation:emerge-fade 1s var(--ease) .5s both}
   .p1-copy h1 .ln-i{animation:emerge-rise 1.2s var(--ease) .6s both}
   .p1-copy h1 .ln:nth-child(2) .ln-i{animation-delay:.7s}
-  .p1-copy .p1-descriptor,.p1-copy .p1-meta{animation:emerge-fade 1.1s var(--ease) 1s both}
+  .p1-copy .p1-descriptor,.p1-copy .p1-dj,.p1-copy .p1-genres,.p1-copy .p1-meta{animation:emerge-fade 1.1s var(--ease) 1s both}
   .web-header{animation:emerge-fade 1.1s var(--ease) 1.1s both}
 
   .motion [data-reveal]>.ln>.ln-i{transform:translateY(110%);transition:transform 1.2s var(--ease)}
@@ -383,3 +383,19 @@ html,body{overflow-x:clip}
 
 /* Price picker lead-in (Darren, 8 Nov 2026): bold, above the prices. */
 .price-picker legend{font-weight:700;font-size:16px;line-height:1.45;margin:0 0 14px;text-wrap:pretty;white-space:normal}
+
+/* P1 headliner (19 Nov 2026): the DJ in the descriptor's pink, a size up,
+   with the genres in ivory beneath. Replaces the descriptor line. */
+.p1-copy .p1-dj{margin:0;font-family:var(--font-unbounded),sans-serif;font-weight:900;text-transform:uppercase;color:var(--pink);font-size:min(4.4vw,6.4svh);line-height:1;letter-spacing:-.06em}
+.p1-copy .p1-genres{margin:min(10px,1.2svh) 0 min(18px,2svh);font-weight:700;font-size:min(1.7vw,2.6svh);letter-spacing:.01em}
+.p1-dot{color:var(--pink);margin:0 .4em}
+.programme-summary{margin:-12px 0 34px;font:700 clamp(13px,1.15vw,16px)/1.5 var(--font-unbounded),sans-serif;letter-spacing:.02em;text-transform:uppercase;color:var(--pink)}
+.programme-summary>span{display:block}
+.programme-summary .p1-dot{color:var(--ivory)}
+@media(max-width:760px){
+  .p1-copy .p1-dj{font-size:min(9.4vw,5.6svh)}
+  .p1-copy .p1-genres{font-size:min(4.4vw,2.6svh);margin-bottom:min(16px,1.8svh)}
+  .programme-summary{margin:-8px 0 26px;font-size:12.5px}
+  .programme-summary .ps-item{display:block}
+  .programme-summary .p1-dot{display:none}
+}

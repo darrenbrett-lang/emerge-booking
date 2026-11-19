@@ -59,7 +59,15 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
                 <span className="ln"><span className="ln-i">Be there for</span></span>
                 <span className="ln"><span className="ln-i"><span>the beginning</span></span></span>
               </h1>
-              <p className="p1-descriptor">{EVENT.descriptor}</p>
+              <p className="p1-dj">{EVENT.dj}</p>
+              <p className="p1-genres">
+                {EVENT.genres.map((g, i) => (
+                  <span key={g}>
+                    {i > 0 && <span className="p1-dot" aria-hidden="true">·</span>}
+                    {g}
+                  </span>
+                ))}
+              </p>
               <p className="p1-meta">
                 Friday 27 Nov <span className="p1-slash" aria-hidden="true">/</span> {EVENT.start}{" "}
                 <span className="p1-slash p1-meta-dot" aria-hidden="true">/</span>{" "}
@@ -88,7 +96,7 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
               Or bring your people.
             </p>
             <p className="welcome-note">Either way, there will be a warm welcome waiting for you.</p>
-            <p className="invite-body">Emerge with an easier feeling, new connections and ideas.</p>
+            <p className="invite-body">Make meaningful connections with creative people in your town.</p>
             <a className="invite-link" href="#rsvp">
               I’m coming! <span aria-hidden="true">↗︎</span>
             </a>
@@ -144,6 +152,16 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             </div>
             <div className="experience-programme">
               <p className="eyebrow">On the night</p>
+              <p className="programme-summary">
+                <span>
+                  <span className="ps-item">
+                    <span className="nowrap">{"--Y"}</span> Magazine launch
+                  </span>
+                  <span className="p1-dot" aria-hidden="true">·</span>
+                  <span className="ps-item">Interactive experiences</span>
+                </span>
+                <span>House party vibes; chill, dance, game</span>
+              </p>
               <div className="programme-grid">
                 <div>
                   <span className="programme-number">01 / MUSIC</span>

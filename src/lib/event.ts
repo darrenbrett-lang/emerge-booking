@@ -3,6 +3,9 @@ export const EVENT = {
   id: "maidenhead-2026-11",
   name: "Emerge · Maidenhead",
   descriptor: "Music, culture & meaningful connection",
+  // The headliner on the P1, as on the flyer (Darren, 19 Nov 2026).
+  dj: "DJ Ti Balo",
+  genres: ["House", "Disco", "Afro beats"],
   dateLong: "Friday 27 November 2026",
   dateShort: "27 November 2026",
   start: "8:30 pm",
