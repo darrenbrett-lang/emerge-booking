@@ -16,7 +16,7 @@ type Props = {
 };
 
 // What else is on, as on the flyer (Darren, 19 Nov 2026). Used on the P1
-// under the genres and again at the top of the programme. On a phone each
+// under the genres only (not repeated in the programme, Darren 19 Nov). On a phone each
 // item takes its own line, so the dot never hangs at a line end.
 function ProgrammeSummary() {
   return (
@@ -174,7 +174,6 @@ export function Invitation({ availability, inviter, inviteToken }: Props) {
             </div>
             <div className="experience-programme">
               <p className="eyebrow">On the night</p>
-              <ProgrammeSummary />
               <div className="programme-grid">
                 <div>
                   <span className="programme-number">01 / MUSIC</span>
