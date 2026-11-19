@@ -3,46 +3,62 @@
 <head>
 <meta charset="utf-8">
 <title>Emerge flyer</title>
-<!-- The P1 as a printed flyer. Drawn at A4 in millimetres; ?a5 prints the
-     same page scaled to A5. Render with: node print/flyer/render.mjs -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800;900&family=Work+Sans:ital,wght@0,600;0,700;0,800;1,700&display=block" rel="stylesheet">
+<!-- The P1 as a printed flyer, for cafés, gyms and local venues. Drawn at A4
+     in millimetres. ?bleed adds 3 mm of artwork on every side for a print
+     shop (page 216 x 303 mm, trim to A4). ?a5 prints the same page scaled to
+     A5. Render with: node print/flyer/render.mjs -->
 <style id="page">@page{size:210mm 297mm;margin:0}</style>
 <style>
-:root{--night:#171713;--ivory:#F5F1E8;--acid:#EFFF00;--electric:#354BFF;--pink:#FF70BC}
+/* Static font files, so Chrome embeds them in the PDF (it drops variable
+   fonts to outlines). Unique family names so no local copy stands in. */
+@font-face{font-family:'Emerge Unbounded';src:url('../fonts/Unbounded-700.ttf') format('truetype');font-weight:700;font-style:normal}
+@font-face{font-family:'Emerge Unbounded';src:url('../fonts/Unbounded-800.ttf') format('truetype');font-weight:800;font-style:normal}
+@font-face{font-family:'Emerge Unbounded';src:url('../fonts/Unbounded-900.ttf') format('truetype');font-weight:900;font-style:normal}
+@font-face{font-family:'Emerge Work';src:url('../fonts/WorkSans-700.ttf') format('truetype');font-weight:700;font-style:normal}
+@font-face{font-family:'Emerge Work';src:url('../fonts/WorkSans-800.ttf') format('truetype');font-weight:800;font-style:normal}
+@font-face{font-family:'Emerge Work';src:url('../fonts/WorkSans-700-italic.ttf') format('truetype');font-weight:700;font-style:italic}
+:root{--night:#171713;--ivory:#F5F1E8;--acid:#EFFF00;--electric:#354BFF;--pink:#FF70BC;--b:0mm}
+.bleed{--b:3mm}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--night)}
-body{-webkit-print-color-adjust:exact;print-color-adjust:exact;color:var(--ivory);font-family:'Work Sans',sans-serif}
-.sheet{width:210mm;height:297mm;overflow:hidden;display:flex;flex-direction:column;background:var(--night)}
+body{-webkit-print-color-adjust:exact;print-color-adjust:exact;color:var(--ivory);font-family:'Emerge Work',sans-serif}
+.sheet{width:calc(210mm + 2*var(--b));height:calc(297mm + 2*var(--b));overflow:hidden;display:flex;flex-direction:column;background:var(--night)}
 .a5 .sheet{zoom:.70711}
 .panel{position:relative;isolation:isolate;flex:1;display:flex;flex-direction:column;justify-content:flex-end}
-.photo{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% center}
-.panel:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#17171355,transparent 30%,#17171311 44%,var(--night) 74%)}
-.date{position:absolute;top:0;left:0;margin:0;padding:11mm 11mm 0;font-weight:750;font-size:8.6mm;letter-spacing:.035em;text-transform:uppercase}
-.brand{position:absolute;top:30mm;left:50%;transform:translateX(-50%);width:186mm}
+.photo{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 30%}
+.panel:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#17171355,transparent 26%,#17171322 40%,#171713e6 56%,var(--night) 66%)}
+.date{position:absolute;top:0;left:0;margin:0;padding:calc(11mm + var(--b)) calc(11mm + var(--b)) 0;font-weight:800;font-size:8mm;letter-spacing:.035em;text-transform:uppercase}
+.brand{position:absolute;top:calc(23mm + var(--b));left:50%;transform:translateX(-50%);width:160mm}
 .brand img{display:block;width:100%;height:auto}
-.brand p{margin:-1mm 6% 0 0;text-align:right;font-style:italic;font-weight:700;font-size:8.2mm;letter-spacing:-.02em;white-space:nowrap}
-.copy{padding:0 11mm 12mm}
-.invited{margin:0 0 6mm;font-weight:650;font-size:5.6mm;letter-spacing:.1em;text-transform:uppercase}
-h1{font-family:'Unbounded',sans-serif;font-weight:900;font-size:18.6mm;line-height:1.02;letter-spacing:-.075em;text-transform:uppercase;margin:0 0 8mm}
+.brand p{margin:-1mm 6% 0 0;text-align:right;font-style:italic;font-weight:700;font-size:7.2mm;letter-spacing:-.02em;white-space:nowrap}
+.copy{padding:0 calc(11mm + var(--b)) 9mm}
+h1{font-family:'Emerge Unbounded',sans-serif;font-weight:900;font-size:16.4mm;line-height:1.02;letter-spacing:-.075em;text-transform:uppercase;margin:0 0 8mm}
 h1 span{display:block}
 h1 span+span{color:var(--electric)}
-.descriptor{font-family:'Unbounded',sans-serif;font-weight:700;font-size:8mm;line-height:1.3;letter-spacing:-.05em;text-transform:uppercase;color:var(--pink);margin:0 0 7mm;text-wrap:balance}
-.meta{margin:0;font-weight:700;font-size:5.8mm;line-height:1.55;letter-spacing:.05em;text-transform:uppercase}
+.programme{margin:0 0 7mm}
+.dj{margin:0;font-family:'Emerge Unbounded',sans-serif;font-weight:900;font-size:15mm;line-height:1;letter-spacing:-.06em;text-transform:uppercase;color:var(--pink)}
+.genres{margin:3.5mm 0 0;font-weight:700;font-size:6.6mm;letter-spacing:.01em}
+.genres b{color:var(--pink);margin:0 .35em}
+.extras{margin:5mm 0 0;font-family:'Emerge Unbounded',sans-serif;font-weight:700;font-size:4.5mm;line-height:1.4;letter-spacing:.02em;text-transform:uppercase;color:var(--pink)}
+.extras b{color:var(--ivory);margin:0 .4em;font-weight:700}
+.welcome{margin:0 0 6mm;font-style:italic;font-weight:700;font-size:6.6mm;letter-spacing:-.01em}
+.meta{margin:0;font-weight:700;font-size:5.6mm;line-height:1.55;letter-spacing:.05em;text-transform:uppercase}
 .meta b{color:var(--acid);margin:0 .35em}
-.band{background:var(--acid);color:var(--night);padding:9mm 11mm 10mm;display:flex;align-items:flex-end;justify-content:space-between;gap:8mm}
-.band p{margin:0;font-family:'Unbounded',sans-serif;text-transform:uppercase}
-.cta{font-weight:800;font-size:5.4mm;letter-spacing:-.02em;margin-bottom:2.5mm!important}
-.url{font-weight:800;font-size:8.6mm;letter-spacing:-.05em;text-transform:none!important;white-space:nowrap}
+.band{background:var(--acid);color:var(--night);padding:6mm calc(11mm + var(--b)) calc(6mm + var(--b));display:flex;align-items:center;justify-content:space-between;gap:8mm}
+.band p{margin:0;font-family:'Emerge Unbounded',sans-serif;text-transform:uppercase}
+.cta{font-weight:800;font-size:5.6mm;letter-spacing:-.02em;margin-bottom:3mm!important}
+.url{font-weight:800;font-size:7.4mm;letter-spacing:-.05em;text-transform:none!important;white-space:nowrap}
 .from{font-weight:800;font-size:5.4mm;letter-spacing:-.03em;text-transform:none!important;margin-top:3mm!important}
 .scan{flex:none;display:flex;flex-direction:column;align-items:center;gap:2.2mm}
 .qr{display:block;width:30mm;height:30mm}
-.price{font-weight:800;font-size:3.4mm;letter-spacing:.02em;white-space:nowrap}
-.band{align-items:center}
+.scan-label{background:var(--night);color:var(--acid);text-align:center;font-weight:800;font-size:4.2mm;letter-spacing:.02em;padding:1.8mm 3mm 2mm;white-space:nowrap}
 </style>
 <script>
-if (location.search.includes("a5")) {
+const q = location.search;
+if (q.includes("bleed")) {
+  document.documentElement.classList.add("bleed");
+  document.getElementById("page").textContent = "@page{size:216mm 303mm;margin:0}";
+} else if (q.includes("a5")) {
   document.documentElement.classList.add("a5");
   document.getElementById("page").textContent = "@page{size:148mm 210mm;margin:0}";
 }
@@ -59,9 +75,13 @@ if (location.search.includes("a5")) {
       <p>A night that stays with you.</p>
     </div>
     <div class="copy">
-      <p class="invited">You’re invited</p>
       <h1><span>Be there for</span><span>the beginning</span></h1>
-      <p class="descriptor">Music, culture &amp; meaningful connection</p>
+      <div class="programme">
+        <p class="dj">DJ Ti Balo</p>
+        <p class="genres">House<b>·</b>Disco<b>·</b>Afro beats</p>
+        <p class="extras">Magazine launch<b>·</b>Art<b>·</b>Interactive experiences</p>
+      </div>
+      <p class="welcome">Come on your own. Or bring your people.</p>
       <p class="meta">Friday 27 Nov<b>/</b>8:30 pm<br>Ben&amp;Jack Studio, Maidenhead</p>
     </div>
   </div>
@@ -73,7 +93,7 @@ if (location.search.includes("a5")) {
     </div>
     <div class="scan">
       <img class="qr" src="qr.svg" alt="QR code for emergeunderground.com">
-      <p class="price">Scan to book</p>
+      <p class="scan-label">Scan to book</p>
     </div>
   </div>
 </div>
