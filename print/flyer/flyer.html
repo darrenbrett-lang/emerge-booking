@@ -24,8 +24,13 @@ html,body{margin:0;padding:0;background:var(--night)}
 body{-webkit-print-color-adjust:exact;print-color-adjust:exact;color:var(--ivory);font-family:'Emerge Work',sans-serif}
 .sheet{width:calc(210mm + 2*var(--b));height:calc(297mm + 2*var(--b));overflow:hidden;display:flex;flex-direction:column;background:var(--night)}
 .a5 .sheet{zoom:.70711}
-.panel{position:relative;isolation:isolate;flex:1;display:flex;flex-direction:column;justify-content:flex-end}
-.photo{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 30%}
+.panel{position:relative;isolation:isolate;overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:flex-end}
+/* The photo is set 25% larger than the panel and placed so the star on her
+   tooth lands right of BE THERE FOR, above the fade. Same box for both layers. */
+.photo{position:absolute;z-index:-2;top:-24.8%;left:-66.2%;height:125%;width:auto;max-width:none}
+/* The star on her tooth sits above the fade, so it glows beside the headline. */
+.photo.star{z-index:0}
+.copy{position:relative;z-index:1}
 .panel:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#17171355,transparent 26%,#17171322 40%,#171713e6 56%,var(--night) 66%)}
 .date{position:absolute;top:0;left:0;margin:0;padding:calc(11mm + var(--b)) calc(11mm + var(--b)) 0;font-weight:800;font-size:8mm;letter-spacing:.035em;text-transform:uppercase}
 .brand{position:absolute;top:calc(23mm + var(--b));left:50%;transform:translateX(-50%);width:160mm}
@@ -69,7 +74,7 @@ if (q.includes("bleed")) {
 <div class="sheet">
   <div class="panel">
     <img class="photo" src="portrait.jpg" alt="">
-    <img class="photo" src="star.png" alt="">
+    <img class="photo star" src="star.png" alt="">
     <p class="date">27 Nov 2026 / Maidenhead</p>
     <div class="brand">
       <img src="wordmark.png" alt="Emerge">
