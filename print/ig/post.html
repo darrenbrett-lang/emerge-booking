@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Emerge Instagram post</title>
+<!-- 4:5 Instagram post, 1080 x 1350. Render with: node print/ig/render.mjs -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@700;800&family=Work+Sans:ital,wght@1,700&display=block" rel="stylesheet">
+<style>
+:root{--night:#171713;--ivory:#F5F1E8;--acid:#EFFF00;--pink:#FF70BC}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1350px;overflow:hidden;background:var(--night)}
+.post{position:relative;isolation:isolate;width:1080px;height:1350px;color:var(--ivory);font-family:'Work Sans',sans-serif}
+.photo{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% center}
+.post:after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#17171366,transparent 26%,transparent 50%,#171713d9 74%,var(--night) 92%)}
+.brand{position:absolute;top:150px;left:50%;transform:translateX(-50%);width:960px}
+.brand img{display:block;width:100%;height:auto}
+.brand p{margin:-4px 5% 0 0;text-align:right;font-style:italic;font-weight:700;font-size:46px;letter-spacing:-.02em;white-space:nowrap}
+.descriptor{position:absolute;left:60px;right:60px;bottom:84px;margin:0;font-family:'Unbounded',sans-serif;font-weight:700;font-size:56px;line-height:1.22;letter-spacing:-.05em;text-transform:uppercase;color:var(--pink)}
+.descriptor span{display:block;white-space:nowrap}
+.rule{position:absolute;left:60px;bottom:258px;width:96px;height:6px;background:var(--acid)}
+</style>
+</head>
+<body>
+<div class="post">
+  <img class="photo" src="../flyer/portrait.jpg" alt="">
+  <img class="photo" src="../flyer/star.png" alt="">
+  <div class="brand">
+    <img src="../flyer/wordmark.png" alt="Emerge">
+    <p>A night that stays with you.</p>
+  </div>
+  <span class="rule"></span>
+  <p class="descriptor"><span>Music, culture &amp;</span><span>meaningful connection</span></p>
+</div>
+</body>
+</html>
