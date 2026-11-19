@@ -9,7 +9,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const chrome = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const page = `file://${join(here, "flyer.html")}`;
 
-for (const [name, query] of [["Emerge-flyer-A4.pdf", ""], ["Emerge-flyer-A4-bleed.pdf", "?bleed"], ["Emerge-flyer-A5.pdf", "?a5"]]) {
+for (const [name, query] of [["Emerge-flyer-A4.pdf", ""], ["Emerge-flyer-A4-bleed.pdf", "?bleed"], ["Emerge-flyer-A5.pdf", "?a5"], ["Emerge-flyer-A5-4up-A3.pdf", "?a3"]]) {
   execFileSync(chrome, [
     "--headless=new",
     "--disable-gpu",

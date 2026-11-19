@@ -6,7 +6,7 @@
 <!-- The P1 as a printed flyer, for cafés, gyms and local venues. Drawn at A4
      in millimetres. ?bleed adds 3 mm of artwork on every side for a print
      shop (page 216 x 303 mm, trim to A4). ?a5 prints the same page scaled to
-     A5. Render with: node print/flyer/render.mjs -->
+     A5, and ?a3 puts four of those on one A3 sheet. Render with: node print/flyer/render.mjs -->
 <style id="page">@page{size:210mm 297mm;margin:0}</style>
 <style>
 /* Static font files, so Chrome embeds them in the PDF (it drops variable
@@ -24,6 +24,10 @@ html,body{margin:0;padding:0;background:var(--night)}
 body{-webkit-print-color-adjust:exact;print-color-adjust:exact;color:var(--ivory);font-family:'Emerge Work',sans-serif}
 .sheet{width:calc(210mm + 2*var(--b));height:calc(297mm + 2*var(--b));overflow:hidden;display:flex;flex-direction:column;background:var(--night)}
 .a5 .sheet{zoom:.70711}
+/* ?a3: four A5 flyers butted 2 x 2 on one A3 sheet, cut once each way. */
+.a3,.a3 body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.a3 body{display:grid;grid-template-columns:repeat(2,148.5mm);grid-auto-rows:210mm;width:297mm;height:420mm;overflow:hidden;background:var(--night);box-shadow:inset 0 0 0 420mm var(--night)}
+.a3 .sheet{zoom:.70725}
 .panel{position:relative;isolation:isolate;overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:flex-end}
 /* The photo is set 25% larger than the panel and placed so the star on her
    tooth lands right of BE THERE FOR, above the fade. Same box for both layers. */
@@ -68,6 +72,9 @@ const q = location.search;
 if (q.includes("bleed")) {
   document.documentElement.classList.add("bleed");
   document.getElementById("page").textContent = "@page{size:216mm 303mm;margin:0}";
+} else if (q.includes("a3")) {
+  document.documentElement.classList.add("a5", "a3");
+  document.getElementById("page").textContent = "@page{size:297mm 420mm;margin:0}";
 } else if (q.includes("a5")) {
   document.documentElement.classList.add("a5");
   document.getElementById("page").textContent = "@page{size:148mm 210mm;margin:0}";
@@ -107,5 +114,11 @@ if (q.includes("bleed")) {
     </div>
   </div>
 </div>
+<script>
+if (location.search.includes("a3")) {
+  const one = document.querySelector(".sheet");
+  for (let i = 0; i < 3; i++) document.body.insertBefore(one.cloneNode(true), document.body.querySelector("script"));
+}
+</script>
 </body>
 </html>
