@@ -35,7 +35,11 @@ h1 span+span{color:var(--electric)}
 .band p{margin:0;font-family:'Unbounded',sans-serif;text-transform:uppercase}
 .cta{font-weight:800;font-size:5.4mm;letter-spacing:-.02em;margin-bottom:2.5mm!important}
 .url{font-weight:800;font-size:8.6mm;letter-spacing:-.05em;text-transform:none!important;white-space:nowrap}
-.price{font-weight:800;font-size:5.4mm;line-height:1.25;letter-spacing:-.03em;text-transform:none!important;text-align:right;white-space:nowrap}
+.from{font-weight:800;font-size:5.4mm;letter-spacing:-.03em;text-transform:none!important;margin-top:3mm!important}
+.scan{flex:none;display:flex;flex-direction:column;align-items:center;gap:2.2mm}
+.qr{display:block;width:30mm;height:30mm}
+.price{font-weight:800;font-size:3.4mm;letter-spacing:.02em;white-space:nowrap}
+.band{align-items:center}
 </style>
 <script>
 if (location.search.includes("a5")) {
@@ -65,8 +69,12 @@ if (location.search.includes("a5")) {
     <div>
       <p class="cta">Get me in!</p>
       <p class="url">emergeunderground.com</p>
+      <p class="from">Tickets from £10</p>
     </div>
-    <p class="price">Tickets<br>from £10</p>
+    <div class="scan">
+      <img class="qr" src="qr.svg" alt="QR code for emergeunderground.com">
+      <p class="price">Scan to book</p>
+    </div>
   </div>
 </div>
 </body>
