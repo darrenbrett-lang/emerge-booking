@@ -32,6 +32,7 @@ function ProgrammeSummary() {
         House party vibes<span className="ps-colon">:</span> chill<span className="p1-dot" aria-hidden="true">·</span>dance
         <span className="p1-dot" aria-hidden="true">·</span>game
       </span>
+      <span className="ps-bar">With a fully stocked bar</span>
     </p>
   );
 }

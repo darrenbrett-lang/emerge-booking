@@ -405,8 +405,9 @@ html,body{overflow-x:clip}
 @media(max-width:760px){.p1-copy .programme-summary{margin:0 0 min(14px,1.6svh);font-size:min(3.2vw,1.55svh,12.5px);line-height:1.45}}
 @media (prefers-reduced-motion:no-preference){.p1-copy .programme-summary{animation:emerge-fade 1.1s var(--ease) 1s both}}
 /* The dots inside a summary line sit closer than the ones between items. */
-.programme-summary>span:last-child .p1-dot{margin:0 .3em}
-@media(max-width:760px){.programme-summary>span:last-child .p1-dot{display:inline}}
+.programme-summary>span:nth-child(2) .p1-dot{margin:0 .3em}
+@media(max-width:760px){.programme-summary>span:nth-child(2) .p1-dot{display:inline}}
 
 /* The colon in "House party vibes: chill", in yellow as on the flyer (Darren, 19 Nov 2026). */
 .programme-summary .ps-colon{color:var(--acid)}
+.programme-summary .ps-bar{color:var(--ivory)}
