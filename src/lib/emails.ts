@@ -5,7 +5,6 @@
 // renders it. Every email has a plain-text version.
 
 import { CONTROLLER, EVENT, firstName, formatLondon } from "./event";
-import { formatPlace } from "./format-place";
 import { googleCalendarUrl, icsUrl } from "./calendar";
 import { PRICE_FROM } from "./price";
 
@@ -207,9 +206,6 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
       h1("You&rsquo;re<br>in.") +
       p(lead) +
       detailsBlock([
-        ...(typeof pl.place === "number"
-          ? [`<strong style="${F(800,44,1,HEAD)};letter-spacing:-.04em">${esc(formatPlace(pl.place))}</strong><br><span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">of ${EVENT.capacity}</span>`]
-          : []),
         `<span style="${F(700,12,1.4,BODY)};letter-spacing:.14em;text-transform:uppercase">Booking reference</span><br><strong style="${F(800,26,1.1,HEAD)};letter-spacing:-.02em">${esc(ref)}</strong><br>${esc(name)}`,
         ...eventRows(),
       ]) +
@@ -233,7 +229,6 @@ function confirmation(pl: P, ctx: Ctx): Rendered {
     transferred ? `${firstName(String(pl.from_name ?? ""))} has passed their place on to you.` : "",
     `Glad you're coming, ${firstName(name)}.`,
     "",
-    typeof pl.place === "number" ? `You're ${formatPlace(pl.place)} of ${EVENT.capacity}.` : "",
     `Booking reference: ${ref}`,
     `Name: ${name}`,
     "",
