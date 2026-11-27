@@ -49,7 +49,8 @@ export async function flushEmails(limit = 20) {
       }
       const res = await client().emails.send(
         {
-          from: env.emailFrom(),
+          // The day-of welcome comes from Suze (Darren, 27 Nov 2026).
+          from: row.kind === "tonight" ? env.emailFrom().replace(/^[^<]*</, "Suze at Emerge <") : env.emailFrom(),
           to: row.to_email,
           replyTo: env.emailReplyTo(),
           subject: email.subject,

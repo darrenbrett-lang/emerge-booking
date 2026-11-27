@@ -15,7 +15,8 @@ export type EmailKind =
   | "offer_expired"
   | "transfer_offer"
   | "transfer_complete"
-  | "transfer_lapsed";
+  | "transfer_lapsed"
+  | "tonight";
 
 export type Rendered = { subject: string; html: string; text: string };
 
@@ -399,6 +400,82 @@ function transferLapsed(pl: P, ctx: Ctx): Rendered {
   return { subject: "Your Emerge place is still yours", html, text };
 }
 
+// The day-of welcome (Darren, 27 Nov 2026): from Suze, warm, the address and
+// the walk from Reform Road, and a nudge to bring a friend while booking is open.
+const TONIGHT_STEPS = [
+  "Turn into Reform Road and go left, towards Clyde House.",
+  "Bear round to the right by Huws Gray.",
+  "Carry on down that road, with Screwfix on your left.",
+  "Just past Bulldog Display on your right, bear round to the right.",
+  "At Alpha Flooring on your right there’s a big red Biffa bin. Turn right there and walk down to the doors. That’s us.",
+];
+
+const steps = (items: string[]) => `
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:4px 0 10px">
+  ${items
+    .map(
+      (t, i) => `
+  <tr>
+    <td valign="top" width="44" style="width:44px;padding:12px 0;border-top:1px solid ${C.rule}">
+      <span style="${F(900,22,1.1,HEAD)};color:${C.acid}">${i + 1}</span>
+    </td>
+    <td valign="top" style="padding:12px 0;border-top:1px solid ${C.rule}">
+      <p style="margin:0;${F(400,17,1.5,BODY)};color:${C.ivory}">${esc(t)}</p>
+    </td>
+  </tr>`,
+    )
+    .join("")}
+</table>`;
+
+function tonight(pl: P, ctx: Ctx): Rendered {
+  const first = firstName(String(pl.name ?? ""));
+  const hi = first ? `Hi ${esc(first)},` : "Hi,";
+  const html = layout(
+    ctx,
+    "We’re dimming the lights. Here’s how to find us.",
+    eyebrow(`Tonight · ${EVENT.start}`) +
+      h1("See you tonight") +
+      p(hi) +
+      p("I can’t wait to see you. We’re dimming the lights and getting the last things in place, and the room is starting to feel like Emerge.") +
+      p(`Doors open at ${esc(EVENT.start)} and we go on until ${esc(EVENT.end)}. Come as you are.`) +
+      detailsBlock([
+        `<strong style="${F(800,19,1.2,HEAD)};letter-spacing:-.02em">${esc(EVENT.venue)}</strong>`,
+        EVENT.addressLines.map(esc).join("<br>"),
+      ]) +
+      button(EVENT.mapUrl, "Open in maps") +
+      h2("Finding the door") +
+      steps(TONIGHT_STEPS) +
+      h2("Bring a friend") +
+      p("It’s not too late. If you can think of anyone who’d love tonight, send them this link. Booking is open until midnight and everyone is welcome.") +
+      button(ctx.site, "Book for a friend") +
+      p(`Or copy the link: <a href="${esc(ctx.site)}" style="color:${C.pink}">www.emergeunderground.com</a>`, true) +
+      `<p style="margin:30px 0 4px;${F(400,17,1.55,BODY)};color:${C.ivory}">See you very soon,</p>` +
+      `<p style="margin:0 0 14px;${F(700,20,1.3,BODY,true)};color:${C.pink}">Suze x</p>`,
+  );
+  const text = [
+    hi,
+    "",
+    "I can’t wait to see you. We’re dimming the lights and getting the last things in place, and the room is starting to feel like Emerge.",
+    `Doors open at ${EVENT.start} and we go on until ${EVENT.end}. Come as you are.`,
+    "",
+    EVENT.venue,
+    ...EVENT.addressLines,
+    `Map: ${EVENT.mapUrl}`,
+    "",
+    "FINDING THE DOOR",
+    ...TONIGHT_STEPS.map((t, i) => `${i + 1}. ${t}`),
+    "",
+    "BRING A FRIEND",
+    "It’s not too late. If you can think of anyone who’d love tonight, send them this link. Booking is open until midnight and everyone is welcome.",
+    ctx.site,
+    "",
+    "See you very soon,",
+    "Suze x",
+    textFooter(ctx),
+  ].join("\n");
+  return { subject: "See you tonight at Emerge", html, text };
+}
+
 const TEMPLATES: Record<EmailKind, (pl: P, ctx: Ctx) => Rendered> = {
   confirmation,
   waitlist_joined: waitlistJoined,
@@ -407,6 +484,7 @@ const TEMPLATES: Record<EmailKind, (pl: P, ctx: Ctx) => Rendered> = {
   transfer_offer: transferOffer,
   transfer_complete: transferComplete,
   transfer_lapsed: transferLapsed,
+  tonight,
 };
 
 export function renderEmail(kind: string, payload: P, ctx: Ctx): Rendered {

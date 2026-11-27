@@ -11,6 +11,7 @@ const SAMPLES: Record<string, Record<string, unknown>> = {
   transfer_offer: { to_name: "Pat New", from_name: "Sue Example", accept_token: "accept-sample", deadline: "2026-11-27T18:00:00Z" },
   transfer_complete: { name: "Sue Example", to_name: "Pat New", old_reference: "EM-7K3QX" },
   transfer_lapsed: { name: "Sue Example", to_name: "Pat New", reference: "EM-7K3QX" },
+  tonight: { name: "Sue Example" },
 };
 
 export async function GET(req: Request, ctx: { params: Promise<{ kind: string }> }) {
