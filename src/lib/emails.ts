@@ -16,7 +16,8 @@ export type EmailKind =
   | "transfer_offer"
   | "transfer_complete"
   | "transfer_lapsed"
-  | "tonight";
+  | "tonight"
+  | "tonight_plain";
 
 export type Rendered = { subject: string; html: string; text: string };
 
@@ -478,6 +479,34 @@ function tonight(pl: P, ctx: Ctx): Rendered {
   return { subject: "See you tonight at Emerge", html, text };
 }
 
+// The same welcome as plain text only (Darren, 27 Nov 2026), for anyone whose
+// Gmail filed the branded one under Promotions. No HTML, no buttons.
+function tonightPlain(pl: P, ctx: Ctx): Rendered {
+  const first = firstName(String(pl.name ?? ""));
+  const text = [
+    first ? `Hi ${first},` : "Hi,",
+    "",
+    "I can’t wait to see you tonight. We’re dimming the lights and getting the last things in place.",
+    "",
+    `Doors open at ${EVENT.start} and we go on until ${EVENT.end}.`,
+    "",
+    EVENT.venue,
+    ...EVENT.addressLines,
+    `Map: ${EVENT.mapUrl}`,
+    "",
+    "Finding the door:",
+    ...TONIGHT_STEPS.map((t, i) => `${i + 1}. ${t}`),
+    "",
+    `Know someone who’d love it? Booking is open until 10 pm and everyone is welcome: ${ctx.site.replace(/^https?:\/\//, "")}`,
+    "",
+    "See you tonight!",
+    "Susi x",
+    "",
+    "(I’ve sent this as plain text too, in case the designed version landed in your Promotions tab instead of your main inbox.)",
+  ].join("\n");
+  return { subject: "Tonight at Emerge: how to find us", html: "", text };
+}
+
 const TEMPLATES: Record<EmailKind, (pl: P, ctx: Ctx) => Rendered> = {
   confirmation,
   waitlist_joined: waitlistJoined,
@@ -487,6 +516,7 @@ const TEMPLATES: Record<EmailKind, (pl: P, ctx: Ctx) => Rendered> = {
   transfer_complete: transferComplete,
   transfer_lapsed: transferLapsed,
   tonight,
+  tonight_plain: tonightPlain,
 };
 
 export function renderEmail(kind: string, payload: P, ctx: Ctx): Rendered {

@@ -44,17 +44,18 @@ export async function flushEmails(limit = 20) {
       }
       const email = renderEmail(row.kind, payload, { site: env.siteUrl(), unsubscribeUrl });
       const headers: Record<string, string> = {};
-      if (unsubscribeUrl) {
+      // The plain version stays as personal as it can: no List-Unsubscribe header.
+      if (unsubscribeUrl && row.kind !== "tonight_plain") {
         headers["List-Unsubscribe"] = `<${unsubscribeUrl}>`;
       }
       const res = await client().emails.send(
         {
           // The day-of welcome comes from Susi (Darren, 27 Nov 2026).
-          from: row.kind === "tonight" ? env.emailFrom().replace(/^[^<]*</, "Susi at Emerge <") : env.emailFrom(),
+          from: row.kind.startsWith("tonight") ? env.emailFrom().replace(/^[^<]*</, "Susi at Emerge <") : env.emailFrom(),
           to: row.to_email,
           replyTo: env.emailReplyTo(),
           subject: email.subject,
-          html: email.html,
+          ...(email.html ? { html: email.html } : {}),
           text: email.text,
           headers,
           tags: [{ name: "kind", value: row.kind }],
