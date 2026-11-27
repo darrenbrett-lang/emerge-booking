@@ -497,7 +497,7 @@ function tonightPlain(pl: P, ctx: Ctx): Rendered {
     "Finding the door:",
     ...TONIGHT_STEPS.map((t, i) => `${i + 1}. ${t}`),
     "",
-    `Know someone who’d love it? Booking is open until 10 pm and everyone is welcome: ${ctx.site.replace(/^https?:\/\//, "")}`,
+    `If you know someone else who’d love a warm Friday night, booking is open until 10 pm, and everyone is welcome: ${ctx.site.replace(/^https?:\/\//, "")}`,
     "",
     "See you tonight!",
     "Susi x",
