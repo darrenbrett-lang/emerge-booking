@@ -400,7 +400,7 @@ function transferLapsed(pl: P, ctx: Ctx): Rendered {
   return { subject: "Your Emerge place is still yours", html, text };
 }
 
-// The day-of welcome (Darren, 27 Nov 2026): from Suze, warm, the address and
+// The day-of welcome (Darren, 27 Nov 2026): from Susi, warm, the address and
 // the walk from Reform Road, and a nudge to bring a friend while booking is open.
 const TONIGHT_STEPS = [
   "Turn onto Reform Road and go left at the first T. Clyde House is ahead of you.",
@@ -451,7 +451,7 @@ function tonight(pl: P, ctx: Ctx): Rendered {
       button(ctx.site, "Book for a friend") +
       p(`Or send the link: <a href="${esc(ctx.site)}" style="color:${C.pink}">www.emergeunderground.com</a>`, true) +
       `<p style="margin:30px 0 4px;${F(400,17,1.55,BODY)};color:${C.ivory}">See you tonight!</p>` +
-      `<p style="margin:0 0 14px;${F(700,20,1.3,BODY,true)};color:${C.pink}">Suze x</p>`,
+      `<p style="margin:0 0 14px;${F(700,20,1.3,BODY,true)};color:${C.pink}">Susi x</p>`,
   );
   const text = [
     hi,
@@ -472,7 +472,7 @@ function tonight(pl: P, ctx: Ctx): Rendered {
     ctx.site,
     "",
     "See you tonight!",
-    "Suze x",
+    "Susi x",
     textFooter(ctx),
   ].join("\n");
   return { subject: "See you tonight at Emerge", html, text };
