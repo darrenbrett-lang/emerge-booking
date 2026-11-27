@@ -403,7 +403,7 @@ function transferLapsed(pl: P, ctx: Ctx): Rendered {
 // The day-of welcome (Darren, 27 Nov 2026): from Suze, warm, the address and
 // the walk from Reform Road, and a nudge to bring a friend while booking is open.
 const TONIGHT_STEPS = [
-  "Turn into Reform Road and go left, towards Clyde House.",
+  "Turn onto Reform Road and go left at the T. Clyde House is ahead of you.",
   "Bear round to the right by Huws Gray.",
   "Carry on down that road, with Screwfix on your left.",
   "Just past Bulldog Display on your right, bear round to the right.",
@@ -417,7 +417,7 @@ const steps = (items: string[]) => `
       (t, i) => `
   <tr>
     <td valign="top" width="44" style="width:44px;padding:12px 0;border-top:1px solid ${C.rule}">
-      <span style="${F(900,22,1.1,HEAD)};color:${C.acid}">${i + 1}</span>
+      <span style="${F(900,22,1.1,HEAD)};color:${C.pink}">${i + 1}</span>
     </td>
     <td valign="top" style="padding:12px 0;border-top:1px solid ${C.rule}">
       <p style="margin:0;${F(400,17,1.5,BODY)};color:${C.ivory}">${esc(t)}</p>
@@ -446,10 +446,10 @@ function tonight(pl: P, ctx: Ctx): Rendered {
       h2("Finding the door") +
       steps(TONIGHT_STEPS) +
       h2("Bring a friend") +
-      p("It’s not too late. If you can think of anyone who’d love tonight, send them this link. Booking is open until midnight and everyone is welcome.") +
+      p("It’s not too late. If you can think of anyone who’d love tonight, send them this link. Booking is open until 10 pm and everyone is welcome.") +
       button(ctx.site, "Book for a friend") +
-      p(`Or copy the link: <a href="${esc(ctx.site)}" style="color:${C.pink}">www.emergeunderground.com</a>`, true) +
-      `<p style="margin:30px 0 4px;${F(400,17,1.55,BODY)};color:${C.ivory}">See you very soon,</p>` +
+      p(`Or send the link: <a href="${esc(ctx.site)}" style="color:${C.pink}">www.emergeunderground.com</a>`, true) +
+      `<p style="margin:30px 0 4px;${F(400,17,1.55,BODY)};color:${C.ivory}">See you tonight!</p>` +
       `<p style="margin:0 0 14px;${F(700,20,1.3,BODY,true)};color:${C.pink}">Suze x</p>`,
   );
   const text = [
@@ -466,10 +466,10 @@ function tonight(pl: P, ctx: Ctx): Rendered {
     ...TONIGHT_STEPS.map((t, i) => `${i + 1}. ${t}`),
     "",
     "BRING A FRIEND",
-    "It’s not too late. If you can think of anyone who’d love tonight, send them this link. Booking is open until midnight and everyone is welcome.",
+    "It’s not too late. If you can think of anyone who’d love tonight, send them this link. Booking is open until 10 pm and everyone is welcome.",
     ctx.site,
     "",
-    "See you very soon,",
+    "See you tonight!",
     "Suze x",
     textFooter(ctx),
   ].join("\n");
