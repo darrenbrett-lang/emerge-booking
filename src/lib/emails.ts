@@ -406,7 +406,7 @@ const TONIGHT_STEPS = [
   "Turn onto Reform Road and go left at the first T. Clyde House is ahead of you.",
   "Bear round to the right by Huws Gray.",
   "Carry on down that road, with Screwfix on your left.",
-  "Just past Bulldog Display on your right, bear round to the right.",
+  "Just past Bulldog Display on your right, bear round to the right with the curve of the road.",
   "At Alpha Flooring on your right there’s a big red Biffa bin. Turn right there and walk down to the doors. That’s us.",
 ];
 
