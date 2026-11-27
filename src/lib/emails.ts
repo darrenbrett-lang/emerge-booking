@@ -437,6 +437,7 @@ function tonight(pl: P, ctx: Ctx): Rendered {
       h1("See you tonight") +
       p(hi) +
       p("I can’t wait to see you. We’re dimming the lights and getting the last things in place, and the room is starting to feel like Emerge.") +
+      p("Waiting for you: DJ Ti Balo playing house, disco and Afro beats, the --Y Magazine launch, interactive experiences, a fully stocked bar, and a room full of people here to chill, dance and play.") +
       p(`Doors open at ${esc(EVENT.start)} and we go on until ${esc(EVENT.end)}. Come as you are.`) +
       detailsBlock([
         `<strong style="${F(800,19,1.2,HEAD)};letter-spacing:-.02em">${esc(EVENT.venue)}</strong>`,
@@ -456,6 +457,7 @@ function tonight(pl: P, ctx: Ctx): Rendered {
     hi,
     "",
     "I can’t wait to see you. We’re dimming the lights and getting the last things in place, and the room is starting to feel like Emerge.",
+    "Waiting for you: DJ Ti Balo playing house, disco and Afro beats, the --Y Magazine launch, interactive experiences, a fully stocked bar, and a room full of people here to chill, dance and play.",
     `Doors open at ${EVENT.start} and we go on until ${EVENT.end}. Come as you are.`,
     "",
     EVENT.venue,
