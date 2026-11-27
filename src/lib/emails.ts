@@ -420,7 +420,7 @@ const steps = (items: string[]) => `
       <span style="${F(900,22,1.1,HEAD)};color:${C.pink}">${i + 1}</span>
     </td>
     <td valign="top" style="padding:12px 0;border-top:1px solid ${C.rule}">
-      <p style="margin:0;${F(400,17,1.5,BODY)};color:${C.ivory}">${esc(t)}</p>
+      <p style="margin:0;${F(400,17,1.5,BODY)};color:${C.ivory}">${esc(t).replace("big red Biffa bin", `<strong style="color:${C.pink}">big red Biffa bin</strong>`)}</p>
     </td>
   </tr>`,
     )
