@@ -403,7 +403,7 @@ function transferLapsed(pl: P, ctx: Ctx): Rendered {
 // The day-of welcome (Darren, 27 Nov 2026): from Suze, warm, the address and
 // the walk from Reform Road, and a nudge to bring a friend while booking is open.
 const TONIGHT_STEPS = [
-  "Turn onto Reform Road and go left at the T. Clyde House is ahead of you.",
+  "Turn onto Reform Road and go left at the first T. Clyde House is ahead of you.",
   "Bear round to the right by Huws Gray.",
   "Carry on down that road, with Screwfix on your left.",
   "Just past Bulldog Display on your right, bear round to the right.",
